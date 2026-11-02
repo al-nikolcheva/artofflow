@@ -1,65 +1,48 @@
-# AN in the Studios
+# Art of Flow — website
 
-Website for **AN in the Studios** — a London studio building calm, editorial Instagram presence for interior-design studios.
-
-Built as a fast, no-framework static site: plain HTML, one CSS file, a little JavaScript. It's easy to host anywhere and easy to hand to a builder later. The design follows the brand spec — Cormorant Garamond + Jost, an ivory / espresso / walnut palette, full-bleed imagery and a lot of whitespace.
+A calm, editorial site for **Art of Flow**, London. Plain HTML, one CSS file, a little JavaScript. No build step: it can be hosted anywhere (Netlify, Vercel, GitHub Pages, Cloudflare Pages) or used as the reference to build the same site in Webflow.
 
 ## Pages
 
-| Page | File | Purpose |
-|------|------|---------|
-| Home | `index.html` | The trailer — hero, positioning, what I do, selected work, CTA |
-| Work | `work.html` | Portfolio grid (placeholders now, real projects later) |
-| Case study | `case-study.html` | Reusable project template — copy per project |
-| Services | `services.html` | Three tiers (no prices) + how it works |
-| About | `about.html` | The story, the belief, a portrait |
-| Contact | `contact.html` | The form — the site's main action |
-| Privacy | `privacy.html` | Plain-language privacy note (review before launch) |
+| Page | File |
+|---|---|
+| Home | `index.html` |
+| What we build | `what-we-build.html` |
+| How we work (incl. Care + FAQ) | `how-we-work.html` |
+| Work (case study, room for more) | `work.html` |
+| Studio | `studio.html` |
+| Contact (form + Book a call) | `contact.html` |
+| Privacy / Cookies (UK GDPR) | `privacy.html`, `cookies.html` |
 
-## Preview locally
+Preview: open `index.html`, or run `python3 -m http.server 8000` and visit http://localhost:8000.
 
-No build step. Open `index.html` directly, or serve the folder:
+## Brand system (`assets/css/styles.css`, top of file)
 
-```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
+| Swatch | Hex | Use |
+|---|---|---|
+| Black | `#111111` | text, headings, footer |
+| White | `#FFFFFF` | main background |
+| Off-white | `#F7F6F3` | alternate sections |
+| Warm stone beige | `#D8D0C4` | the one accent: bands, button hover, thin dividers |
+| Light stone | `#EAE5DD` | soft panels, form fields |
+| Mid grey | `#7A7A7A` | captions, labels |
+| Light grey | `#DADADA` | borders, lines |
 
-## Before you launch — the short list
+Fonts: **Cormorant Garamond** (headlines, Light/Regular) and **Montserrat** (body, labels, nav, buttons in caps with 0.15em spacing). Square buttons that fade to beige, 1 px lines, 01/02/03 numbering, soft opacity fades only.
 
-1. **Connect the contact form.** In `contact.html`, replace the form's
-   `action="REPLACE_WITH_YOUR_FORM_ENDPOINT"` with a real endpoint from
-   [Formspree](https://formspree.io) or [Basin](https://usebasin.com) (both free to start).
-   Until that's set, the form shows a local "thank you" confirmation so nothing looks broken.
-   Once wired up, submissions post to your inbox.
-2. **Swap the placeholder imagery.** Every warm block marked *Placeholder* is a
-   `<div class="ph …">`. Replace each with a real `<img>` — warm, natural light, real
-   textures (linen, travertine, plaster, brass, oak). Keep the aspect-ratio class
-   (`ratio-4x5`, `ratio-3x4`, etc.) on the wrapper or the image.
-3. **Set your real details.** Search-and-replace `hello@aninthestudios.com` and confirm
-   the Instagram handle `@aninthestudios` everywhere.
-4. **Add real project copy.** Duplicate `case-study.html` per project and link each
-   `work-card` in `work.html` to it. Fill *The result* with a real number once you have one.
-5. **Fill in the portrait** on `about.html`.
-6. **Check on mobile**, then connect your domain (e.g. `aninthestudios.com`).
+## Before launch
 
-## Design tokens
+1. **Images.** Every grey grainy panel marked *Image — …* is a placeholder that says what belongs there. Replace each
+   `<figure class="media ratio-… ph …">…</figure>` with
+   `<figure class="media ratio-…"><img src="assets/img/name.webp" alt="Short description"></figure>`.
+   Black-and-white with grain, WebP, under 400 KB; hero 2400 px wide, others 1600 px; 16:9 wide, 4:5 portrait.
+   Your portrait goes on `studio.html`.
+2. **Logo.** The wordmark is live text (Montserrat, caps). To use the exported `profile-aof.png`/SVG instead, swap the `.wordmark` link contents.
+3. **Contact form.** In `contact.html` replace `REPLACE_WITH_FORM_ENDPOINT` with a Formspree (or Basin) endpoint, then send a test.
+4. **Book a call.** Replace `https://cal.com/artofflow/intro` in `contact.html` with your Cal.com or Calendly link.
+5. **Legal.** Fill the bracketed parts of `privacy.html` and have it checked.
+6. **Analytics.** Prefer a cookie-free tool (Plausible, Fathom). If you use one that sets cookies, load it inside `loadOptional()` in `assets/js/main.js` so it waits for consent.
+7. **Domain.** In GoDaddy DNS add the A / CNAME records your host gives you for `artofflow.studio`. **Leave the Microsoft 365 MX (and related TXT/CNAME) records untouched.**
+8. **Google Search Console.** Verify the domain and submit the site.
 
-All colours, fonts and spacing live as CSS variables at the top of
-`assets/css/styles.css`:
-
-- **Ivory** `#EDE6D8` (background) · **Espresso** `#221B17` (dark sections/footer)
-- **Walnut** `#3A2C24` (body text) · **Taupe** `#8A7A6A` (captions/labels)
-- **Stone** `#CDBFAE` (dividers/placeholders) · **Sage** `#7D8170` (rare accent)
-- Fonts: Cormorant Garamond (display) + Jost (body/UI), loaded from Google Fonts
-
-## Structure
-
-```
-├── index.html  work.html  services.html  about.html  contact.html  privacy.html  case-study.html
-├── favicon.svg
-└── assets/
-    ├── css/styles.css      # design system + all page styles
-    ├── js/main.js          # nav scroll state, mobile menu, scroll reveals, form
-    └── img/logo-mark.svg   # oval AN monogram
-```
+Favicon (`favicon.svg`, `assets/img/favicon-32.png`, `favicon-256.png`) and the social image (`assets/img/social-share.png`, 1200×630) use the AOF mark. Page titles and meta descriptions are set on every page.

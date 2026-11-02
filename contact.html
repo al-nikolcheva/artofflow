@@ -1,148 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | AN in the Studios</title>
-  <meta name="description" content="Tell me about your interior-design studio and what you're hoping for. I reply to everything personally, usually within a day or two.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <script>document.documentElement.className+=" js";</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Art of Flow</title>
+  <meta name="description" content="Get in touch with Art of Flow in London. Tell us what takes up most of your team's time, or book a short call.">
+  <link rel="canonical" href="https://artofflow.studio/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Art of Flow">
+  <meta property="og:title" content="Contact | Art of Flow">
+  <meta property="og:description" content="Get in touch with Art of Flow in London. Tell us what takes up most of your team's time, or book a short call.">
+  <meta property="og:url" content="https://artofflow.studio/contact.html">
+  <meta property="og:image" content="https://artofflow.studio/assets/img/social-share.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/favicon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
-  <!-- NAV -->
-  <header class="nav nav--solid" id="nav">
-    <a class="nav__logo" href="index.html" aria-label="AN in the Studios — home">
-      <span class="nav__logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 100 100" width="40" height="40" style="color:currentColor">
-          <ellipse cx="50" cy="50" rx="47" ry="38" fill="none" stroke="currentColor" stroke-width="1.4"/>
-          <text x="50" y="51" text-anchor="middle" dominant-baseline="central" font-family="'Cormorant Garamond',Georgia,serif" font-size="34" font-weight="500" fill="currentColor">AN</text>
-        </svg>
-      </span>
-      <span class="nav__logo-text">AN in the<br>Studios</span>
-    </a>
-    <nav aria-label="Primary">
-      <ul class="nav__links">
-        <li><a class="nav__link" href="work.html">Work</a></li>
-        <li><a class="nav__link" href="services.html">Services</a></li>
-        <li><a class="nav__link" href="about.html">About</a></li>
-      </ul>
-    </nav>
-    <a class="nav__cta" href="contact.html" aria-current="page">Contact</a>
-    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
-      <span></span><span></span><span></span>
-    </button>
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="wordmark" href="index.html" aria-label="Art of Flow, home">Art of Flow</a>
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul class="nav__links" id="menu">
+          <li><a href="what-we-build.html">What we build</a></li>
+          <li><a href="how-we-work.html">How we work</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="studio.html">Studio</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+          <li><a class="btn btn--small" href="contact.html#book">Book a call</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <div class="nav__drawer" id="drawer">
-    <a href="work.html">Work</a>
-    <a href="services.html">Services</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <span class="caption">@aninthestudios</span>
-  </div>
+  <main>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <div class="reveal">
-      <span class="eyebrow">Contact</span>
-      <h1 class="display">Let's talk about<br>your studio.</h1>
-      <p class="lead">Tell me a little about your work and what you're hoping for. I reply to everything personally, usually within a day or two.</p>
-    </div>
-  </section>
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="label fade">Contact</span>
+        <h1 class="fade">Tell us about your week.</h1>
+        <p class="lead fade">A few lines is plenty. We reply personally within two working days.</p>
+      </div>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="section section--tight">
-    <div class="wide contact-layout">
-      <div>
-        <!-- Replace the action below with your Formspree/Basin endpoint, e.g.
-             action="https://formspree.io/f/xxxxxxx" method="POST" -->
-        <form id="contact-form" action="REPLACE_WITH_YOUR_FORM_ENDPOINT" method="POST" class="reveal">
-          <div class="form-field">
-            <label for="name">Name <span class="req">*</span></label>
-            <input type="text" id="name" name="name" required autocomplete="name">
-          </div>
-          <div class="form-field">
-            <label for="email">Email <span class="req">*</span></label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-          </div>
-          <div class="form-field">
-            <label for="studio">Studio / Instagram handle</label>
-            <input type="text" id="studio" name="studio" placeholder="@yourstudio" autocomplete="off">
-          </div>
-          <div class="form-field">
-            <label for="message">What are you looking for? <span class="req">*</span></label>
-            <textarea id="message" name="message" required placeholder="A little about your studio and what you're hoping for."></textarea>
-          </div>
-          <button type="submit" class="btn">Send</button>
-        </form>
+    <hr class="rule">
 
-        <!-- Shown after submit when no endpoint is wired up yet -->
-        <div id="form-success" class="form-success">
-          <p class="serif-note">Thank you — that's landed with me. I'll be in touch personally, usually within a day or two.</p>
+    <section class="section">
+      <div class="wrap">
+        <div class="cols">
+          <div class="fade">
+            <div class="head__meta"><span class="num">01</span><span class="label">Write to us</span></div>
+          </div>
+          <div class="fade">
+            <!-- Replace the action with your form endpoint, e.g. https://formspree.io/f/xxxxxxx -->
+            <form class="form" id="contact-form" action="REPLACE_WITH_FORM_ENDPOINT" method="POST">
+              <input type="hidden" name="_subject" value="New enquiry from artofflow.studio">
+              <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+              <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
+              <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+              <div class="field"><label for="f-time">What takes up most of your team&rsquo;s time?</label><textarea id="f-time" name="message" required></textarea></div>
+              <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <p class="form__note">We use your details only to reply to you. See our <a href="privacy.html">privacy policy</a>.</p>
+              <div><button class="btn" type="submit">Send</button></div>
+              <div class="form__thanks" role="status"><h3>Thank you.</h3><p style="margin-top:16px">Your note is with us. We&rsquo;ll reply within two working days.</p></div>
+            </form>
+          </div>
         </div>
       </div>
+    </section>
 
-      <aside class="contact-aside reveal">
-        <div class="detail">
-          <span class="caption">Or email me directly</span>
-          <p style="margin-top: 6px;"><a class="link-underline" href="mailto:hello@aninthestudios.com">hello@aninthestudios.com</a></p>
+    <section class="section bg-off" id="book">
+      <div class="wrap">
+        <div class="cols">
+          <div class="fade"><div class="head__meta"><span class="num">02</span><span class="label">Book a call</span></div></div>
+          <div class="fade">
+            <h2 style="max-width:16ch">Prefer to talk? Pick a time that suits you.</h2>
+            <p style="margin:24px 0 40px">A relaxed 30-minute call to understand your business and whether we can help.</p>
+            <!-- Replace with your Calendly or Cal.com link -->
+            <a class="btn" href="https://cal.com/artofflow/intro" target="_blank" rel="noopener">Book a call</a>
+          </div>
         </div>
-        <div class="detail">
-          <span class="caption">Find me on Instagram</span>
-          <p style="margin-top: 6px;"><a class="link-underline" href="https://instagram.com/aninthestudios" target="_blank" rel="noopener">@aninthestudios</a></p>
-        </div>
-        <div class="detail">
-          <span class="caption">Based in</span>
-          <p style="margin-top: 6px; font-family: var(--display); font-size: 22px; color: var(--espresso);">London</p>
-        </div>
-      </aside>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- FOOTER -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cols">
+          <div class="fade"><div class="head__meta"><span class="num">03</span><span class="label">Details</span></div></div>
+          <ul class="details fade">
+            <li><span class="label" style="display:block">Email</span><a href="mailto:hello@artofflow.studio">hello@artofflow.studio</a></li>
+            <li><span class="label" style="display:block">Studio</span>London, United Kingdom</li>
+            <li><span class="label" style="display:block">Instagram</span><a href="https://instagram.com/artofflow.studio" target="_blank" rel="noopener">@artofflow.studio</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
   <footer class="footer">
-    <div class="footer__top">
-      <div>
-        <span class="footer__brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" width="54" height="54" style="color:var(--paper)">
-            <ellipse cx="50" cy="50" rx="47" ry="38" fill="none" stroke="currentColor" stroke-width="1.4"/>
-            <text x="50" y="51" text-anchor="middle" dominant-baseline="central" font-family="'Cormorant Garamond',Georgia,serif" font-size="34" font-weight="500" fill="currentColor">AN</text>
-          </svg>
-        </span>
-        <p class="footer__positioning">Calm, editorial Instagram for interior-design studios. London.</p>
+    <div class="wrap">
+      <div class="footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Art of Flow</a>
+          <p class="footer__line">Quiet systems for busy teams.</p>
+        </div>
+        <div>
+          <span class="label">Pages</span>
+          <ul>
+            <li><a href="what-we-build.html">What we build</a></li>
+            <li><a href="how-we-work.html">How we work</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="label">Contact</span>
+          <ul>
+            <li><a href="mailto:hello@artofflow.studio">hello@artofflow.studio</a></li>
+            <li><a href="https://instagram.com/artofflow.studio" target="_blank" rel="noopener">Instagram @artofflow.studio</a></li>
+            <li>London</li>
+          </ul>
+        </div>
       </div>
-      <div class="footer__col">
-        <h4>Studio</h4>
-        <ul>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Art of Flow, London</span>
+        <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
       </div>
-      <div class="footer__col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="https://instagram.com/aninthestudios" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:hello@aninthestudios.com">Email</a></li>
-          <li><a href="portal.html">Client login</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="privacy.html">Privacy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>© 2026 AN in the Studios</span>
-      <a href="https://instagram.com/aninthestudios" target="_blank" rel="noopener" style="text-decoration:none; letter-spacing:1.5px; font-size:12px; color:var(--stone);">@aninthestudios</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <div class="cookie" role="region" aria-label="Cookie notice">
+    <p>We only use the cookies the site needs to work. With your permission we may also measure visits to improve the site. <a href="cookies.html">Read more</a></p>
+    <div class="cookie__actions">
+      <button class="btn btn--small" data-cookie="accepted">Accept</button>
+      <button class="btn btn--small btn--outline" data-cookie="declined">Decline</button>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
