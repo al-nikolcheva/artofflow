@@ -91,7 +91,7 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: var(--s6);
 }
 .head__meta { display: flex; gap: var(--s3); align-items: baseline; }
-.head__title h2 { max-width: 18ch; }
+.head__title h2 { max-width: 20ch; }
 .head__title p { margin-top: var(--s3); color: var(--black); }
 
 /* Two-column text block */
@@ -361,4 +361,70 @@ figcaption.caption { margin-top: var(--s2); }
   .btn { width: 100%; }
   .nav .btn { width: auto; }
   .wordmark { font-size: 12px; letter-spacing: 0.22em; }
+}
+
+/* ==========================================================================
+   Editorial layer: masthead strip, italic accents, figure captions,
+   pull quotes, drop caps, running index.
+   ========================================================================== */
+h1 em, h2 em, .statement em, .quote em { font-style: italic; font-weight: 300; }
+
+/* Masthead strip under the nav, like a magazine folio */
+.folio {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--black); border-bottom: 1px solid var(--line);
+  padding: 12px 0; margin-bottom: var(--s6);
+}
+.folio span { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
+.folio span:nth-child(2) { text-align: center; color: var(--grey); }
+.folio span:nth-child(3) { text-align: right; }
+.page-hero .folio { margin-bottom: var(--s6); }
+
+/* Oversized hero headline set across the page */
+.hero h1, .page-hero h1 { max-width: 15ch; }
+.hero h1 { font-size: clamp(44px, 7vw, 88px); }
+
+/* Figure captions: Fig. 01 — description */
+.fig { margin: 0; }
+.fig figcaption {
+  display: flex; gap: var(--s3); justify-content: space-between;
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey);
+}
+.fig figcaption b { color: var(--black); font-weight: 500; }
+
+/* Pull quote */
+.quote {
+  font-family: var(--serif); font-weight: 300; font-style: italic;
+  font-size: clamp(32px, 4.2vw, 60px); line-height: 1.15;
+  max-width: 22ch; margin: 0 auto; text-align: center;
+}
+.quote-wrap { text-align: center; }
+.quote-wrap .label { display: block; margin-top: var(--s4); }
+.quote-mark { font-family: var(--serif); font-size: 80px; line-height: .5; display: block; color: var(--beige); margin-bottom: var(--s3); }
+
+/* Drop cap for opening paragraphs */
+.dropcap::first-letter {
+  font-family: var(--serif); font-weight: 300;
+  float: left; font-size: 5.2em; line-height: .82;
+  padding: 6px 12px 0 0;
+}
+
+/* Running index list (contents-page style) */
+.index { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--black); }
+.index li { border-bottom: 1px solid var(--line); }
+.index a {
+  display: grid; grid-template-columns: 80px 1fr auto; align-items: baseline; gap: var(--s3);
+  padding: var(--s3) 0; text-decoration: none;
+  transition: background-color .7s var(--ease), padding .7s var(--ease);
+}
+.index a:hover { background: var(--off-white); padding-left: var(--s2); padding-right: var(--s2); }
+.index h3 { font-size: clamp(30px, 3.4vw, 48px); }
+.index p { color: var(--grey); font-size: 14px; max-width: 32ch; text-align: right; margin: 0; }
+
+@media (max-width: 700px) {
+  .folio { grid-template-columns: 1fr 1fr; }
+  .folio span:nth-child(2) { display: none; }
+  .index a { grid-template-columns: 44px 1fr; }
+  .index p { grid-column: 2; text-align: left; }
 }
