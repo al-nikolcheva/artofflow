@@ -1,48 +1,45 @@
 # Art of Flow — website
 
-A calm, editorial site for **Art of Flow**, London. Plain HTML, one CSS file, a little JavaScript. No build step: it can be hosted anywhere (Netlify, Vercel, GitHub Pages, Cloudflare Pages) or used as the reference to build the same site in Webflow.
+**What's live right now:** a single coming-soon page (`index.html`).
+**The full site** (Home, What we build, How we work, Work, Studio, Contact, Privacy, Cookies) is kept ready in `full-site/`. It is not published: `.vercelignore` keeps that folder out of the live site.
 
-## Pages
+Plain HTML and CSS, no build step.
 
-| Page | File |
-|---|---|
-| Home | `index.html` |
-| What we build | `what-we-build.html` |
-| How we work (incl. Care + FAQ) | `how-we-work.html` |
-| Work (case study, room for more) | `work.html` |
-| Studio | `studio.html` |
-| Contact (form + Book a call) | `contact.html` |
-| Privacy / Cookies (UK GDPR) | `privacy.html`, `cookies.html` |
+## Going live with the full site later
 
-Preview: open `index.html`, or run `python3 -m http.server 8000` and visit http://localhost:8000.
+Move the contents of `full-site/` to the top level (replacing the coming-soon `index.html` and `assets/`), remove `full-site` from `.vercelignore`, commit and push. Vercel redeploys automatically. Before that, finish the launch list in the next section.
 
-## Brand system (`assets/css/styles.css`, top of file)
+## Full-site launch list
 
-| Swatch | Hex | Use |
+1. Swap every grey *Image — …* placeholder for a black-and-white photo (WebP, under 400 KB; 2400 px hero, 1600 px others; 16:9 wide, 4:5 portrait). Portrait goes on `studio.html`.
+2. `contact.html`: replace `REPLACE_WITH_FORM_ENDPOINT` with a Formspree endpoint and test it; replace the Cal.com link with yours.
+3. `privacy.html`: fill the [bracketed] parts and have it checked.
+4. Analytics: prefer a cookie-free tool. If it uses cookies, load it inside `loadOptional()` in `assets/js/main.js`.
+
+## Vercel + GitHub + GoDaddy
+
+### 1. Connect GitHub to Vercel
+1. Sign up at vercel.com with **Continue with GitHub**.
+2. **Add New → Project →** import `al-nikolcheva/artofflow` (allow Vercel access to the repo if asked).
+3. Framework preset: **Other**. Leave build command and output directory empty. **Deploy**.
+4. **Settings → Git → Production Branch:** set it to the branch that holds this site (currently `claude/elegant-keller-vmo5xc`, or `main` once it is merged there).
+
+Every push to that branch now updates the live site within a minute.
+
+### 2. Add the domain in Vercel
+**Settings → Domains →** add `artofflow.studio` and `www.artofflow.studio` (let Vercel redirect one to the other). Vercel then shows the exact DNS records to add. Use the values it shows you.
+
+### 3. Point GoDaddy at Vercel
+GoDaddy → **My Products → artofflow.studio → DNS**:
+
+| Type | Name | Value |
 |---|---|---|
-| Black | `#111111` | text, headings, footer |
-| White | `#FFFFFF` | main background |
-| Off-white | `#F7F6F3` | alternate sections |
-| Warm stone beige | `#D8D0C4` | the one accent: bands, button hover, thin dividers |
-| Light stone | `#EAE5DD` | soft panels, form fields |
-| Mid grey | `#7A7A7A` | captions, labels |
-| Light grey | `#DADADA` | borders, lines |
+| A | `@` | the IP Vercel shows (often `76.76.21.21`) |
+| CNAME | `www` | the target Vercel shows (often `cname.vercel-dns.com`) |
 
-Fonts: **Cormorant Garamond** (headlines, Light/Regular) and **Montserrat** (body, labels, nav, buttons in caps with 0.15em spacing). Square buttons that fade to beige, 1 px lines, 01/02/03 numbering, soft opacity fades only.
+- Edit the existing `@` A record (GoDaddy's "Parked" one) and the existing `www` CNAME rather than adding duplicates. Delete any GoDaddy **Forwarding** on the domain.
+- **Do not touch the Microsoft 365 records:** MX, `autodiscover` CNAME, and the TXT records (`MS=…`, `v=spf1…`). Email keeps working.
+- Changes usually work within an hour (up to 48 h). Vercel shows a green tick and adds HTTPS automatically.
 
-## Before launch
-
-1. **Images.** Every grey grainy panel marked *Image — …* is a placeholder that says what belongs there. Replace each
-   `<figure class="media ratio-… ph …">…</figure>` with
-   `<figure class="media ratio-…"><img src="assets/img/name.webp" alt="Short description"></figure>`.
-   Black-and-white with grain, WebP, under 400 KB; hero 2400 px wide, others 1600 px; 16:9 wide, 4:5 portrait.
-   Your portrait goes on `studio.html`.
-2. **Logo.** The wordmark is live text (Montserrat, caps). To use the exported `profile-aof.png`/SVG instead, swap the `.wordmark` link contents.
-3. **Contact form.** In `contact.html` replace `REPLACE_WITH_FORM_ENDPOINT` with a Formspree (or Basin) endpoint, then send a test.
-4. **Book a call.** Replace `https://cal.com/artofflow/intro` in `contact.html` with your Cal.com or Calendly link.
-5. **Legal.** Fill the bracketed parts of `privacy.html` and have it checked.
-6. **Analytics.** Prefer a cookie-free tool (Plausible, Fathom). If you use one that sets cookies, load it inside `loadOptional()` in `assets/js/main.js` so it waits for consent.
-7. **Domain.** In GoDaddy DNS add the A / CNAME records your host gives you for `artofflow.studio`. **Leave the Microsoft 365 MX (and related TXT/CNAME) records untouched.**
-8. **Google Search Console.** Verify the domain and submit the site.
-
-Favicon (`favicon.svg`, `assets/img/favicon-32.png`, `favicon-256.png`) and the social image (`assets/img/social-share.png`, 1200×630) use the AOF mark. Page titles and meta descriptions are set on every page.
+### 4. Afterwards
+Add the domain to Google Search Console (Domain property, verified with a TXT record in GoDaddy).
