@@ -33,21 +33,26 @@
     <a class="btn btn--light" href="contact.html">Book a call</a>
   </div>
 
-  <!-- HERO -->
+  <!-- COVER -->
   <section class="hero grain">
-    <div class="hero__bg shot" aria-hidden="true"></div>
-    <div class="hero__top" aria-hidden="true">
-      <span>AI Systems Studio</span>
-      <span>London — Est. 2026</span>
+    <div class="hero__bg shot" data-parallax="0.12" style="top:-10%;height:120%" aria-hidden="true"></div>
+    <div class="issue-bar" aria-hidden="true">
+      <span class="lift" style="transition-delay:.1s">Issue Nº 01 — The Systems Issue</span>
+      <span class="rule-draw" style="transition-delay:.3s"></span>
+      <span class="lift" style="transition-delay:.2s">London · MMXXVI</span>
     </div>
     <div class="hero__inner">
-      <h1 class="hero__headline">AI systems,<br>built <em>around</em><br>your business.</h1>
+      <h1 class="hero__headline">
+        <span class="rise"><span style="transition-delay:.15s">AI systems,</span></span>
+        <span class="rise"><span style="transition-delay:.27s">built <em>around</em></span></span>
+        <span class="rise"><span style="transition-delay:.39s">your business.</span></span>
+      </h1>
       <div class="hero__row">
-        <p class="hero__sub">We design quiet, reliable systems that do the repetitive work for you — so your team spends its time where it matters.</p>
-        <a class="btn btn--light" href="contact.html">Book a call <span class="arrow">&rarr;</span></a>
+        <p class="hero__sub lift" style="transition-delay:.5s">We design quiet, reliable systems that do the repetitive work for you — so your team spends its time where it matters.</p>
+        <a class="btn btn--light lift" style="transition-delay:.58s" href="contact.html">Book a call <span class="arrow">&rarr;</span></a>
       </div>
     </div>
-    <div class="marquee" aria-hidden="true">
+    <div class="marquee lift" style="transition-delay:.66s" aria-hidden="true">
       <div class="marquee__track">
         <span>Clients</span><span>Sales</span><span>Marketing</span><span>Operations</span><span>Team assistant</span>
         <span>Clients</span><span>Sales</span><span>Marketing</span><span>Operations</span><span>Team assistant</span>
@@ -55,16 +60,29 @@
     </div>
   </section>
 
-  <!-- INTRO STATEMENT -->
+  <!-- CONTENTS -->
+  <section class="section section--tight">
+    <div class="wide">
+      <div class="ix reveal"><span class="ix__no">—</span><span class="ix__label">Contents</span><span class="ix__rule"></span></div>
+      <nav class="toc reveal" aria-label="Contents">
+        <a href="what-we-build.html"><span class="no">01</span><span class="t">What we build</span><span class="dots"></span><span class="pg">The work we take off you</span></a>
+        <a href="how-we-work.html"><span class="no">02</span><span class="t">How we work</span><span class="dots"></span><span class="pg">Call · Design · Build &amp; run</span></a>
+        <a href="work.html"><span class="no">03</span><span class="t">Selected work</span><span class="dots"></span><span class="pg">A manufacturer that stopped chasing</span></a>
+        <a href="about.html"><span class="no">04</span><span class="t">The studio</span><span class="dots"></span><span class="pg">Quiet technology, done with care</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- LEADER (drop cap, columns) -->
   <section class="section">
     <div class="wide">
       <div class="ix reveal"><span class="ix__no">(00)</span><span class="ix__label">The studio</span><span class="ix__rule"></span></div>
-      <div class="reveal" style="max-width:760px">
+      <div class="reveal" style="max-width:860px;margin-bottom:var(--s5)">
         <p class="statement">We build the systems that do the work nobody has time for — <em>quietly, and for good.</em></p>
       </div>
-      <div class="reveal" style="max-width:60ch;margin-top:var(--s4)">
-        <p class="lead">Most automation is built for the tool, not the business. We work the other way round — learning how you already operate, then building AI that fits it. The best of what we do is invisible: work that simply happens, on time, without anyone thinking about it.</p>
-        <p style="margin-top:var(--s4)"><a class="textlink" href="about.html">About the studio <span class="arrow">&rarr;</span></a></p>
+      <div class="cols dropcap reveal" style="max-width:920px">
+        <p>Most automation is built for the tool, not the business. It asks people to change how they work, adds a dashboard nobody opens, and breaks the first time reality doesn't match the diagram.</p>
+        <p>We work the other way round. We learn how you already operate — the handoffs, the exceptions, the things people hold in their heads — then build AI that fits it. The best of what we do is invisible: work that simply happens, on time, without anyone thinking about it. <a class="textlink" href="about.html" style="white-space:nowrap">About the studio&nbsp;&rarr;</a></p>
       </div>
     </div>
   </section>
@@ -73,32 +91,12 @@
   <section class="section section--tight">
     <div class="wide">
       <div class="ix reveal"><span class="ix__no">(01)</span><span class="ix__label">What we build</span><span class="ix__rule"></span></div>
-      <div class="rows reveal">
-        <a class="row" href="what-we-build.html">
-          <span class="row__no">01</span><span class="row__title">Clients</span>
-          <span class="row__desc">Onboarding, follow-ups and reminders that run on their own, so nobody falls through the cracks.</span>
-          <span class="row__arr">&rarr;</span>
-        </a>
-        <a class="row" href="what-we-build.html">
-          <span class="row__no">02</span><span class="row__title">Sales</span>
-          <span class="row__desc">Leads captured, sorted and answered fast — with the right context already attached.</span>
-          <span class="row__arr">&rarr;</span>
-        </a>
-        <a class="row" href="what-we-build.html">
-          <span class="row__no">03</span><span class="row__title">Marketing</span>
-          <span class="row__desc">Content drafted, scheduled and repurposed, in your voice, without the weekly scramble.</span>
-          <span class="row__arr">&rarr;</span>
-        </a>
-        <a class="row" href="what-we-build.html">
-          <span class="row__no">04</span><span class="row__title">Operations</span>
-          <span class="row__desc">The handoffs, data entry and reporting between your tools, done in the background.</span>
-          <span class="row__arr">&rarr;</span>
-        </a>
-        <a class="row" href="what-we-build.html">
-          <span class="row__no">05</span><span class="row__title">Team assistant</span>
-          <span class="row__desc">One place for your team to ask anything — trained on your documents and the way you work.</span>
-          <span class="row__arr">&rarr;</span>
-        </a>
+      <div class="rows">
+        <a class="row reveal" href="what-we-build.html"><span class="row__no">01</span><span class="row__title">Clients</span><span class="row__desc">Onboarding, follow-ups and reminders that run on their own, so nobody falls through the cracks.</span><span class="row__arr">&rarr;</span></a>
+        <a class="row reveal d1" href="what-we-build.html"><span class="row__no">02</span><span class="row__title">Sales</span><span class="row__desc">Leads captured, sorted and answered fast — with the right context already attached.</span><span class="row__arr">&rarr;</span></a>
+        <a class="row reveal d2" href="what-we-build.html"><span class="row__no">03</span><span class="row__title">Marketing</span><span class="row__desc">Content drafted, scheduled and repurposed, in your voice, without the weekly scramble.</span><span class="row__arr">&rarr;</span></a>
+        <a class="row reveal d3" href="what-we-build.html"><span class="row__no">04</span><span class="row__title">Operations</span><span class="row__desc">The handoffs, data entry and reporting between your tools, done in the background.</span><span class="row__arr">&rarr;</span></a>
+        <a class="row reveal d4" href="what-we-build.html"><span class="row__no">05</span><span class="row__title">Team assistant</span><span class="row__desc">One place for your team to ask anything — trained on your documents and the way you work.</span><span class="row__arr">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -110,16 +108,16 @@
       <div class="reveal" style="max-width:640px;margin-bottom:var(--s5)">
         <h2>A short path from first call to work that runs itself.</h2>
       </div>
-      <div class="steps reveal">
-        <div class="step"><div class="step__num">01</div><h3>Call</h3><p>We learn how the business runs and find where the time is leaking. No jargon, no pressure.</p></div>
-        <div class="step"><div class="step__num">02</div><h3>Design</h3><p>We map the system around how you already work, and show you exactly what it will do.</p></div>
-        <div class="step"><div class="step__num">03</div><h3>Build &amp; run</h3><p>We build it, launch it quietly, and look after it as your business changes.</p></div>
+      <div class="steps">
+        <div class="step reveal"><div class="step__num">01</div><h3>Call</h3><p>We learn how the business runs and find where the time is leaking. No jargon, no pressure.</p></div>
+        <div class="step reveal d1"><div class="step__num">02</div><h3>Design</h3><p>We map the system around how you already work, and show you exactly what it will do.</p></div>
+        <div class="step reveal d2"><div class="step__num">03</div><h3>Build &amp; run</h3><p>We build it, launch it quietly, and look after it as your business changes.</p></div>
       </div>
-      <p class="reveal" style="margin-top:var(--s4)"><a class="textlink link--light" href="how-we-work.html" style="color:var(--off)">How we work <span class="arrow">&rarr;</span></a></p>
+      <p class="reveal" style="margin-top:var(--s4)"><a class="textlink" href="how-we-work.html" style="color:var(--off)">How we work <span class="arrow">&rarr;</span></a></p>
     </div>
   </section>
 
-  <!-- PROOF — editorial pull quote -->
+  <!-- PROOF — pull quote -->
   <section class="section section--stone">
     <div class="wide pull reveal">
       <span class="pull__q" aria-hidden="true">&ldquo;</span>
@@ -128,10 +126,13 @@
     </div>
   </section>
 
-  <!-- WORK teaser -->
+  <!-- WORK teaser with figure caption + clip reveal -->
   <section class="section">
     <div class="wide feature">
-      <div class="feature__media reveal"><div class="shot grain ratio-4x3"><span class="shot__label">European manufacturer · anonymous</span></div></div>
+      <figure class="feature__media figure reveal reveal--clip" style="margin:0">
+        <div class="shot grain ratio-4x3" data-parallax="0.05"><span class="shot__label">European manufacturer · anonymous</span></div>
+        <figcaption class="figcap"><b>Fig. 01</b> A studio exporting to the US — the admin taken off the team.</figcaption>
+      </figure>
       <div class="reveal">
         <div class="feature__kicker">(03) Selected work</div>
         <h2>A manufacturer that stopped chasing.</h2>
@@ -152,7 +153,7 @@
         <div class="footer__col"><h4>Connect</h4><ul><li><a href="contact.html">Book a call</a></li><li><a href="mailto:hello@artofflow.studio">hello@artofflow.studio</a></li></ul></div>
         <div class="footer__col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy &amp; Cookies</a></li></ul></div>
       </div>
-      <div class="footer__bottom"><span>&copy; 2026 Art of Flow</span><span>London</span></div>
+      <div class="footer__bottom"><span class="folio">&copy; MMXXVI — Art of Flow</span><span class="folio">London</span></div>
     </div>
   </footer>
 
