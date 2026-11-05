@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Art of Flow</title>
+  <meta name="description" content="Book a call or send a note. Tell us how your business runs and where the time goes, and we'll show you what's worth automating.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script>document.documentElement.className+=" js";</script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <header class="nav nav--solid" id="nav">
+    <a class="nav__logo" href="index.html">Art of Flow</a>
+    <nav aria-label="Primary">
+      <ul class="nav__links">
+        <li><a class="nav__link" href="what-we-build.html">What we build</a></li>
+        <li><a class="nav__link" href="how-we-work.html">How we work</a></li>
+        <li><a class="nav__link" href="work.html">Work</a></li>
+        <li><a class="nav__link" href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="nav__cta"><a class="btn" href="contact.html" aria-current="page">Book a call</a></div>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+  <div class="drawer" id="drawer">
+    <a href="what-we-build.html">What we build</a>
+    <a href="how-we-work.html">How we work</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a class="btn btn--light" href="contact.html">Book a call</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="reveal">
+      <span class="eyebrow">Contact</span>
+      <h1 class="display">Let's find your<br>first system.</h1>
+      <p class="lead">Book a call, or send a note. Tell us a little about how your business runs and where the time goes — we'll tell you honestly what's worth automating.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wide contact-grid">
+      <div>
+        <!-- Replace action with your Formspree/Basin endpoint, or leave as-is to fall back to the email link below. -->
+        <form id="contact-form" action="REPLACE_WITH_YOUR_FORM_ENDPOINT" method="POST" class="reveal">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="message">Where does the time go?</label>
+            <textarea id="message" name="message" required placeholder="A little about your business and the work you'd like to hand over."></textarea>
+          </div>
+          <button type="submit" class="btn">Send <span class="arrow">&rarr;</span></button>
+          <p class="muted" style="font-size:13px;margin-top:var(--s2)">Or email us directly at <a href="mailto:hello@artofflow.studio" style="color:var(--ink)">hello@artofflow.studio</a></p>
+        </form>
+        <div class="form-ok" id="form-ok">
+          <p class="serif-note" style="font-size:24px;margin:0">Thank you — that's with us. We reply to everything personally, usually within a day.</p>
+        </div>
+      </div>
+
+      <aside class="reveal">
+        <div class="book-card">
+          <h3>Rather just talk?</h3>
+          <p>Book a 30-minute call. No slides, no pressure — just a conversation about your business and whether we can help.</p>
+          <!-- Replace # with your Calendly link when ready, e.g. https://calendly.com/artofflow/intro -->
+          <a class="btn btn--light" href="#" id="book-call">Book a call <span class="arrow">&rarr;</span></a>
+        </div>
+        <div style="margin-top:var(--s4)">
+          <span class="eyebrow" style="margin-bottom:var(--s2)">Email</span>
+          <p><a class="textlink" href="mailto:hello@artofflow.studio">hello@artofflow.studio</a></p>
+        </div>
+        <div style="margin-top:var(--s4)">
+          <span class="eyebrow" style="margin-bottom:var(--s2)">Based in</span>
+          <p style="font-family:var(--display);font-size:22px">London</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div><div class="footer__brand">Art of Flow</div><p class="footer__tag">AI systems, built around your business.</p></div>
+      <div class="footer__col"><h4>Studio</h4><ul><li><a href="what-we-build.html">What we build</a></li><li><a href="how-we-work.html">How we work</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="footer__col"><h4>Connect</h4><ul><li><a href="contact.html">Book a call</a></li><li><a href="mailto:hello@artofflow.studio">hello@artofflow.studio</a></li></ul></div>
+      <div class="footer__col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy &amp; Cookies</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>&copy; 2026 Art of Flow</span><span>London</span></div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
