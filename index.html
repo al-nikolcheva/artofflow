@@ -2,6 +2,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Art of Flow is a London studio building AI systems around your business: clients, sales, marketing and operations.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Art of Flow">
+<meta property="og:title" content="Art of Flow: AI systems, built around your business">
+<meta property="og:description" content="A London studio building AI systems for the work that repeats: clients, sales, marketing and operations.">
+<meta property="og:url" content="https://artofflow.vercel.app/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0E0D0C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0D0C'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='15' fill='none' stroke='%23EEEBE6' stroke-width='2'/%3E%3Ctext x='32' y='36' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='11' letter-spacing='1.5' fill='%23EEEBE6'%3EAOF%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@200;300;400;500&family=DM+Mono:wght@400&family=Montserrat:wght@300;400;500&display=swap">
@@ -64,7 +72,7 @@ img { display: block; max-width: 100%; }
 .btn:hover { color: var(--on); border-color: var(--sweep); }
 .btn:hover::before { transform: none; }
 .btn:hover::after { transform: translate(3px, -3px); }
-.black .btn, .hero .btn, .phero .btn, .tile .btn, .top:not(.solid) .btn, .drawer .btn, .band .btn { --sweep: var(--paper); --on: var(--black); }
+.black .btn, .hero .btn, .phero .btn, .top:not(.solid) .btn, .drawer .btn { --sweep: var(--paper); --on: var(--black); }
 .btn.lg { padding: 15px 26px; font-size: 12px; }
 .btn.fill { background: var(--ink); color: var(--ground); border-color: var(--ink); --sweep: var(--ground); --on: var(--ink); }
 .more { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-decoration: none; padding-bottom: 4px; background: linear-gradient(currentColor, currentColor) 100% 100% / 100% 1px no-repeat; transition: background-size .6s var(--ease); }
@@ -110,24 +118,8 @@ img { display: block; max-width: 100%; }
 .phero .display { max-width: 12em; }
 @keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
 
-/* rounded image tiles */
-.tile { position: relative; display: grid; place-items: center; text-align: center; min-height: clamp(380px, 52vw, 640px); border-radius: 6px; overflow: hidden; color: var(--paper); text-decoration: none; background: var(--black); }
-.tile .img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-.tile::after { content: ""; position: absolute; inset: 0; background: rgba(14,13,12,.34); transition: background .6s; }
-.tile:hover .img { transform: scale(1.04); }
-.tile:hover::after { background: rgba(14,13,12,.44); }
-.tile .inner { position: relative; z-index: 1; display: grid; gap: 14px; justify-items: center; padding: 32px 20px; }
-.tile .h2 { font-size: clamp(32px, 3.6vw, 50px); }
 .soon { margin-top: 18px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
-/* service columns */
-.cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.cols a { display: grid; gap: 14px; align-content: start; padding: 30px 24px 34px; border-right: 1px solid var(--line); text-decoration: none; min-width: 0; }
-.cols a:first-child { padding-left: 0; }
-.cols a:last-child { border-right: 0; padding-right: 0; }
-.cols .num { font-family: var(--sans); font-size: 10.5px; letter-spacing: .2em; color: var(--soft); }
-.cols p { margin: 0; }
-.cols a:hover .h3 { font-style: italic; }
 
 /* steps */
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 44px); }
@@ -144,11 +136,6 @@ img { display: block; max-width: 100%; }
 .quote figcaption { display: grid; gap: 4px; }
 .quote figcaption b { font-weight: 500; font-size: 18px; }
 
-/* closing */
-.close { text-align: center; }
-.close .display { max-width: 12em; margin: 0 auto; }
-.close .lead { margin: 22px 0 36px; font-style: italic; font-size: 21px; color: #A69C90; }
-.close .eyebrow { margin-bottom: 28px; }
 
 /* what we build */
 .svc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 90px); padding-block: clamp(52px, 6vw, 88px); border-top: 1px solid var(--line); scroll-margin-top: 90px; }
@@ -215,36 +202,13 @@ form { display: grid; gap: 24px; background: var(--beige); padding: clamp(24px, 
 
 /* footer: connect block */
 footer { background: var(--black); color: var(--paper); padding-block: clamp(72px, 8vw, 110px) 36px; }
-footer .connect { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; padding-bottom: 56px; border-bottom: 1px solid rgba(238,235,230,.16); }
-footer .connect .display { font-size: clamp(40px, 5.6vw, 80px); }
-footer .grid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 32px; padding-top: 48px; }
-footer .col { display: grid; gap: 10px; align-content: start; }
-footer .col a, footer .col span { font-size: 17px; text-decoration: none; }
-footer .col a:hover { font-style: italic; }
-footer .addr { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; line-height: 2; color: #A69C90; margin: 0; }
-footer .oval { display: inline-grid; place-items: center; width: 88px; height: 52px; border: 1px solid rgba(238,235,230,.55); border-radius: 50%; font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: .3em; padding-left: .3em; }
 footer .base { margin-top: 56px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #A69C90; }
 footer .eyebrow, footer .col .eyebrow { color: #A69C90; font-size: 10.5px; }
 
 /* ---------- motion ----------
    Everything below only hides content when the script has added .js, so the page still reads without it. */
 
-/* intro: the wordmark spells itself out on black, then the curtain lifts */
-.intro-veil { position: fixed; inset: 0; z-index: 90; background: var(--black); color: var(--paper); display: grid; place-items: center; transition: transform 1.1s var(--ease); }
-.intro-veil.up { transform: translateY(-100%); }
-.intro-veil .word { font-family: var(--sans); font-weight: 300; font-size: clamp(22px, 3.4vw, 44px); letter-spacing: .5em; padding-left: .5em; display: flex; }
-.intro-veil .word span { opacity: 0; transform: translateY(14px); animation: letter .9s var(--ease) forwards; animation-delay: calc(var(--i) * 60ms + 150ms); white-space: pre; }
-.intro-veil .bar { position: absolute; left: 50%; bottom: 18%; width: 120px; height: 1px; margin-left: -60px; background: rgba(238,235,230,.2); overflow: hidden; }
-.intro-veil .bar::after { content: ""; position: absolute; inset: 0; background: var(--paper); transform: scaleX(0); transform-origin: left; animation: load 1.3s var(--ease) .2s forwards; }
-@keyframes letter { to { opacity: 1; transform: none; } }
-@keyframes load { to { transform: scaleX(1); } }
 
-/* page change: a black panel wipes up over the page, then off the top */
-.wipe { position: fixed; inset: 0; z-index: 80; background: var(--black); transform: translateY(100%); pointer-events: none; display: grid; place-items: center; }
-.wipe .h2 { color: var(--paper); font-style: italic; opacity: 0; transition: opacity .3s; }
-.wipe.cover { transform: none; transition: transform .55s cubic-bezier(.7, 0, .3, 1); }
-.wipe.cover .h2 { opacity: 1; transition-delay: .25s; }
-.wipe.off { transform: translateY(-100%); transition: transform .7s cubic-bezier(.7, 0, .3, 1); }
 
 /* headlines: each word rises out of a mask */
 .js .words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
@@ -271,80 +235,30 @@ footer .eyebrow, footer .col .eyebrow { color: #A69C90; font-size: 10.5px; }
 .js .step.rv::before { content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 1px; background: currentColor; opacity: .3; transform: scaleX(0); transform-origin: left; transition: transform 1.5s var(--ease); transition-delay: calc(var(--d, 0ms) + 150ms); }
 .js .step.rv.in::before { transform: none; }
 
-/* statement that lights up word by word as it scrolls past */
-.scrub .w { transition: opacity .3s linear; }
-.js .scrub .w { opacity: .16; }
-.js .scrub .w.lit { opacity: 1; }
 
 /* hero */
 .hero .display .it, .phero .display .it, .h2 .it, .display .it { font-style: italic; }
-@media (max-width: 1200px) { .hero span.cue { display: none; } }
-.hero .cue { position: absolute; left: 50%; bottom: 26px; z-index: 1; display: grid; justify-items: center; gap: 10px; transform: translateX(-50%); font-family: var(--sans); font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: rgba(238,235,230,.75); }
-.hero .cue i { width: 1px; height: 44px; background: rgba(238,235,230,.25); position: relative; overflow: hidden; }
-.hero .cue i::after { content: ""; position: absolute; left: 0; top: 0; width: 1px; height: 100%; background: var(--paper); animation: cue 2.2s var(--ease) infinite; }
-@keyframes cue { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
-.hero .meta { display: flex; gap: 28px; font-family: var(--sans); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: rgba(238,235,230,.75); }
 
-/* marquee band */
-.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: clamp(22px, 3vw, 38px); background: var(--ground); }
-.marquee .track { display: flex; width: max-content; animation: slide 46s linear infinite; }
-.marquee:hover .track { animation-play-state: paused; }
-.marquee span { font-family: var(--serif); font-size: clamp(38px, 6vw, 88px); line-height: 1; white-space: nowrap; padding-right: .6em; }
-.marquee span:nth-child(even) { font-style: italic; color: var(--soft); }
-.marquee b { font-weight: 400; font-family: var(--sans); font-size: .22em; letter-spacing: .3em; vertical-align: middle; padding-right: 2.6em; color: var(--soft); }
-@keyframes slide { to { transform: translateX(-50%); } }
 
-/* services as a large list; a photo follows the cursor on hover */
-.list { position: relative; border-top: 1px solid rgba(42,31,25,.25); }
-.list a { position: relative; z-index: 1; display: grid; grid-template-columns: 70px minmax(0, 1fr) minmax(0, 340px) 40px; gap: 24px; align-items: center; padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid rgba(42,31,25,.25); text-decoration: none; transition: padding .6s var(--ease), color .4s; }
-.list .num { font-family: var(--sans); font-size: 10.5px; letter-spacing: .2em; color: var(--soft); }
-.list .t { font-family: var(--serif); font-size: clamp(34px, 4.4vw, 62px); line-height: 1; transition: transform .7s var(--ease); }
-.list .arr { justify-self: end; font-size: 22px; transition: transform .6s var(--ease), opacity .4s; opacity: .4; }
-.list a:hover .t { transform: translateX(18px); font-style: italic; }
-.list a:hover .arr { transform: translate(4px, -4px); opacity: 1; }
-.list:hover a:not(:hover) { color: rgba(42,31,25,.38); }
-.peek { position: absolute; top: 0; left: 0; z-index: 2; width: 240px; height: 300px; border-radius: 6px; overflow: hidden; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.6) rotate(-4deg); transition: opacity .4s, transform .6s var(--ease); background: var(--black); }
-.peek.on { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); }
-.peek div { position: absolute; inset: 0; background-size: cover; background-position: center; transition: opacity .4s; }
 
-/* full-bleed photo band with a parallax picture */
-.band { position: relative; height: clamp(520px, 80vh, 820px); overflow: hidden; color: var(--paper); display: grid; place-items: center; text-align: center; background: var(--black); }
-.band .img { position: absolute; inset: -18% 0; background-size: cover; background-position: center; will-change: transform; }
-.band::after { content: ""; position: absolute; inset: 0; background: rgba(14,13,12,.38); }
-.band .inner { position: relative; z-index: 1; display: grid; gap: 26px; justify-items: center; padding: 0 20px; width: 100%; }
-.band .display { max-width: 13em; width: 100%; margin: 0 auto; }
 
-/* big footer word */
-footer .connect .display .it { font-style: italic; }
 
 @media (max-width: 1020px) {
   .nav, .top .btn { display: none; }
   .menu-btn { display: block; }
   .top .wrap { grid-template-columns: 1fr auto; }
-  .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cols a { padding: 26px 20px 30px 0 !important; border-right: 0; border-bottom: 1px solid var(--line); }
-  .cols a:nth-child(even) { padding-left: 20px !important; border-left: 1px solid var(--line); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .facts div:nth-child(3) { padding-left: 0; border-left: 0; }
   .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
-  footer .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  footer .grid .col:first-child { grid-column: 1 / -1; }
 }
 @media (max-width: 760px) {
   body { font-size: 18px; }
-  .steps, .values, .svc, .cs, .split, .contact, .how, .two, .cols, footer .connect { grid-template-columns: minmax(0, 1fr); }
-  .cols a { padding: 24px 0 !important; border-left: 0 !important; }
+  .steps, .values, .svc, .cs, .split, .contact, .how, .two { grid-template-columns: minmax(0, 1fr); }
   .how { gap: 14px; }
-  .tile { min-height: 420px; }
-  .list a { grid-template-columns: 44px minmax(0, 1fr) 24px; gap: 14px; }
-  .list .d { grid-column: 2 / 3; }
-  .peek { display: none; }
-  .hero .meta { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero .film, .phero .film, .marquee .track, .hero .cue i::after { animation: none; }
-  .intro-veil, .wipe { display: none; }
+  .hero .film, .phero .film { animation: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -375,11 +289,11 @@ b, strong { font-weight: 500; color: var(--ink); }
 .sec.black .step .num { color: var(--soft); }
 
 /* labels: small mono caps with a short rule */
-.eyebrow, .tags, .nav a, .menu-btn, .cols .num, .step .num, .list .num, .field label, .legal th, footer .addr, .drawer .connect p { font-family: var(--mono); font-weight: 400; letter-spacing: .08em; }
+.eyebrow, .tags, .nav a, .menu-btn, .step .num, .field label, .legal th, .drawer .connect p { font-family: var(--mono); font-weight: 400; letter-spacing: .08em; }
 .eyebrow { font-size: 11px; }
 .eyebrow::after { width: 40px; opacity: .35; }
 .nav a { font-size: 11.5px; letter-spacing: .06em; }
-.tags { font-size: 10.5px; letter-spacing: .1em; }
+.tags { font-size: 11.5px; letter-spacing: .1em; }
 
 /* type */
 .display { letter-spacing: -.015em; }
@@ -404,7 +318,6 @@ b, strong { font-weight: 500; color: var(--ink); }
 .hero::after { background: linear-gradient(180deg, rgba(14,13,12,.42) 0%, rgba(14,13,12,0) 30%, rgba(14,13,12,0) 50%, rgba(14,13,12,.55) 100%); }
 
 /* work tile */
-.tile { border-radius: 4px; min-height: clamp(380px, 48vw, 620px); }
 .js .unveil { clip-path: inset(6% 4% 6% 4% round 4px); }
 .js .unveil.in { clip-path: inset(0 0 0 0 round 4px); }
 .soon { font-size: 14px; }
@@ -486,10 +399,8 @@ main.fading { opacity: 0; }
 .ico { display: block; width: 52px; margin-bottom: 6px; --sw: 2.2; }
 .ico.lg { width: 96px; margin-bottom: 8px; --sw: 1.5; }
 .intro-row { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 90px); align-items: center; }
-.flow-fig, .ocean-fig { margin: 0; }
-.flow-fig figcaption, .ocean-fig figcaption { margin-top: 14px; font-size: 13.5px; color: var(--soft); }
-.ocean-fig { padding: clamp(36px, 5vw, 64px) 0; border-bottom: 1px solid var(--line); }
-.ocean-fig .art { max-width: 820px; margin: 0 auto; --sw: 1.3; }
+.flow-fig { margin: 0; }
+.flow-fig figcaption { margin-top: 14px; font-size: 13.5px; color: var(--soft); }
 .how .nwrap { display: grid; gap: 18px; align-content: start; justify-items: start; }
 .wide-fig { margin: 0; }
 .wide-fig .art { max-width: 860px; margin: 0 auto; --sw: 1.3; }
@@ -514,10 +425,6 @@ main.fading { opacity: 0; }
 .panel.enter { animation: panel-in .8s var(--ease) both; }
 @keyframes panel-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .panel-title { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5.4vw, 76px); line-height: 1.04; letter-spacing: -.015em; max-width: 14em; text-wrap: balance; color: var(--ink); }
-.panel-photo { margin-top: clamp(32px, 4vw, 56px); aspect-ratio: 16 / 7; border-radius: 6px; overflow: hidden; background: var(--beige); max-width: 100%; }
-.panel-photo img { width: 100%; height: 100%; object-fit: cover; }
-.panel[data-panel="marketing"] .panel-photo img { object-position: center 28%; }
-.panel[data-panel="sales"] .panel-photo img { object-position: center 55%; }
 .panel-fig { margin: clamp(36px, 5vw, 72px) auto 0; max-width: 820px; }
 .panel-fig .art { --sw: 1.2; }
 .psr2 { margin-top: clamp(36px, 5vw, 72px); border-top: 1px solid var(--ink); }
@@ -528,7 +435,6 @@ main.fading { opacity: 0; }
 .psr2 .result .psr-label { color: var(--ink); }
 @media (max-width: 760px) {
   .psr2 > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .panel-photo { aspect-ratio: 4 / 3; }
 }
 .roles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); }
 .roles > div { border-top: 1px solid var(--ink); padding-top: 18px; display: grid; gap: 12px; align-content: start; }
@@ -566,7 +472,6 @@ main.fading { opacity: 0; }
 .flowfield canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero .film.flowfield, .phero .film.flowfield { animation: none; }
 .hero::after, .phero::after { background: linear-gradient(180deg, rgba(14,13,12,.35) 0%, rgba(14,13,12,0) 30%, rgba(14,13,12,0) 55%, rgba(14,13,12,.6) 100%); }
-.tile .img.flowfield { transform: none !important; }
 .acc-pic { background: var(--beige); }
 .acc-pic .img.art { display: grid; place-items: center; padding: 18%; --sw: .6; }
 .acc-pic .img.art svg { max-width: 300px; }
@@ -602,7 +507,7 @@ main.fading { opacity: 0; }
       <a href="#home">Home</a>
       <a href="#build">What we build</a>
       <a href="#how">How we work</a>
-      <a href="#work">Work</a>
+      <a href="#work">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -620,7 +525,7 @@ main.fading { opacity: 0; }
     <a href="#home">Home</a>
     <a href="#build">What we build</a>
     <a href="#how">How we work</a>
-    <a href="#work">Work</a>
+    <a href="#work">Projects</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -916,7 +821,6 @@ main.fading { opacity: 0; }
 
       <div class="panel" role="tabpanel" id="work-valda-marketing" aria-labelledby="tab-marketing" data-panel="marketing">
         <h2 class="panel-title">Seen by the right people <span class="it">in the US.</span></h2>
-        <div class="panel-photo"><img src="assets/valda-marketing.jpg" alt="A tidy desk from above: laptop, open notebook and pen" loading="lazy"></div>
         <figure class="panel-fig"><div class="art" data-art="mloop" role="img" aria-label="Six steps in a loop: make, plan, publish, reach, visit, enquiry, and what worked shapes the next month"></div></figure>
         <div class="psr2">
           <div><span class="psr-label">The problem</span><p>Posting happened by hand, when someone had time. There was no steady presence in the US, and no clear view of what was working.</p></div>
@@ -927,7 +831,6 @@ main.fading { opacity: 0; }
 
       <div class="panel" role="tabpanel" id="work-valda-sales" aria-labelledby="tab-sales" data-panel="sales" hidden>
         <h2 class="panel-title">Interest turned into <span class="it">conversations.</span></h2>
-        <div class="panel-photo"><img src="assets/valda-sales.jpg" alt="Horses running along the shore, blurred with speed" loading="lazy"></div>
         <figure class="panel-fig"><div class="art" data-art="sales2" role="img" aria-label="Find warm prospects, engage, they show interest, a personal message, and a person takes over at the quote"></div></figure>
         <div class="psr2">
           <div><span class="psr-label">The problem</span><p>Finding new US leads depended on spare time, and with the time difference, people who showed interest could go unanswered.</p></div>
@@ -1037,13 +940,13 @@ main.fading { opacity: 0; }
           <div><button class="btn fill lg" type="submit">Send enquiry</button></div>
         </form>
         <div class="sent" id="sent" hidden>
-          <span class="eyebrow">Almost there</span>
-          <h2 class="h3">Your note is ready to send</h2>
-          <p>This preview is not connected to an inbox yet. Copy your note below and email it to <b style="font-weight:500">hello@artofflow.studio</b>.</p>
+          <span class="eyebrow">Thank you</span>
+          <h2 class="h3">Your email is ready to send</h2>
+          <p>Your email app should have opened with your note written in: just press send. If it did not open, copy the note below and email it to <b style="font-weight:500">hello@artofflow.studio</b>.</p>
           <pre id="summary"></pre>
           <div class="row">
             <button class="btn fill" type="button" id="copyBtn">Copy note</button>
-            <a class="more" id="mailBtn" href="#contact">Open in email</a>
+            <a class="more" id="mailBtn" href="#contact">Open email again</a>
             <button class="more" type="button" id="againBtn" style="background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;color:inherit">Edit</button>
           </div>
         </div>
@@ -1058,8 +961,8 @@ main.fading { opacity: 0; }
     <div class="wrap legal">
       <span class="eyebrow">Legal</span>
       <h1 class="h2" style="margin:18px 0 10px">Privacy &amp; cookies</h1>
-      <p class="small">Last updated: [date]</p>
-      <div class="draft" style="margin-top:32px"><b style="font-weight:500">Draft for review.</b> This is a placeholder written for a UK solicitor to check and complete before the site goes live. Text in [square brackets] needs confirming.</div>
+      <p class="small">Last updated: 6 November 2026</p>
+      <div class="draft" style="margin-top:32px"><b style="font-weight:500">Draft for review.</b> This notice is awaiting review by a UK solicitor. Details in [square brackets] are still to be confirmed.</div>
 
       <h2>Who we are</h2>
       <p>Art of Flow ([legal entity name, company number, registered address]) is the controller of the personal data described in this notice. You can contact us at hello@artofflow.studio.</p>
@@ -1067,8 +970,8 @@ main.fading { opacity: 0; }
       <h2>What we collect</h2>
       <ul>
         <li>Details you give us through the contact form or by email: your name, email address, business name and message.</li>
-        <li>Details you give when booking a call through our booking provider: [name, email, time zone, any answers to booking questions].</li>
-        <li>Basic technical information our hosting provider records when you visit the site, such as IP address and browser type. [Confirm with hosting provider.]</li>
+        <li>Details you give when booking a call through our booking provider: your name, email address, time zone and any answers you give to the booking questions.</li>
+        <li>Basic technical information our hosting provider records when you visit the site, such as IP address and browser type. Our hosting provider is Vercel.</li>
       </ul>
 
       <h2>How we use it and our lawful basis</h2>
@@ -1082,7 +985,7 @@ main.fading { opacity: 0; }
       <p style="margin-top:1em">We do not sell your personal data. We do not send marketing emails unless you have asked us to.</p>
 
       <h2>Who we share it with</h2>
-      <p>We use trusted providers to run the studio, for example for email, website hosting and call booking ([list providers, e.g. email provider, hosting provider, Calendly]). They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
+      <p>We use trusted providers to run the studio, : Vercel for website hosting, Calendly for booking calls, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
 
       <h2>How long we keep it</h2>
       <p>Enquiries that do not lead to work: [12 months]. Client records: [6 years after the end of the engagement, for accounting purposes]. [Confirm.]</p>
@@ -1091,10 +994,10 @@ main.fading { opacity: 0; }
       <p>You have the right to access, correct or delete your personal data, to object to or restrict how we use it, and to data portability. To use any of these rights, email hello@artofflow.studio. If you are unhappy with how we handle your data, you can complain to the Information Commissioner&rsquo;s Office (ico.org.uk).</p>
 
       <h2>Cookie policy</h2>
-      <p>Cookies are small files stored on your device. [At launch this site uses only strictly necessary cookies, if any, and loads fonts from Google Fonts, which receives your IP address to deliver them. Confirm once hosting, analytics and booking tools are chosen.]</p>
+      <p>Cookies are small files stored on your device. This site does not set any cookies of its own and uses no analytics. It loads its typefaces from Google Fonts, which receives your IP address to deliver them. If you book a call, Calendly may set its own cookies on its booking page.</p>
       <div class="tablewrap"><table>
         <tr><th>Cookie</th><th>Provider</th><th>Purpose</th><th>Duration</th></tr>
-        <tr><td>[name]</td><td>[provider]</td><td>[strictly necessary / analytics]</td><td>[duration]</td></tr>
+        <tr><td>None</td><td>Art of Flow</td><td>This site sets no cookies of its own</td><td>Not applicable</td></tr>
       </table></div>
       <p style="margin-top:1em">If we add analytics or other non-essential cookies, we will ask for your consent first, under the Privacy and Electronic Communications Regulations (PECR), and you can change your choice at any time.</p>
 
@@ -1114,7 +1017,7 @@ main.fading { opacity: 0; }
         <a class="btn" href="#contact" data-book>Book a call</a>
       </div>
       <nav class="fnav" aria-label="Footer">
-        <a href="#home">Home</a><a href="#build">What we build</a><a href="#how">How we work</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <a href="#home">Home</a><a href="#build">What we build</a><a href="#how">How we work</a><a href="#work">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
       </nav>
       <div class="fcon">
         <span class="fhead">Connect</span>
@@ -1173,7 +1076,6 @@ main.fading { opacity: 0; }
   var mover = function (d, dur, begin) { return still ? "" : '<circle class="dot" r="3"><animateMotion dur="' + dur + '" begin="' + (begin ? "-" + begin : "0s") + '" repeatCount="indefinite" path="' + d + '"/></circle>'; };
   var icon = function (body) { return '<svg viewBox="0 0 120 120" aria-hidden="true">' + body + "</svg>"; };
   var FLOW = "M50 160 C110 160 125 70 185 70 S260 160 320 160 S395 70 455 70 S530 160 590 160";
-  var OUT = "M480 104 C390 30 250 30 160 104", BACK = "M160 124 C250 198 390 198 480 124";
   // Hub: four sources flow into one AI, which sends out three kinds of result.
   var IN1 = "M78 40 C200 40 210 130 292 130", IN2 = "M78 100 C200 100 220 130 292 130",
       IN3 = "M78 160 C200 160 220 130 292 130", IN4 = "M78 220 C200 220 210 130 292 130";
@@ -1184,7 +1086,6 @@ main.fading { opacity: 0; }
   // Loop: once live, the work keeps going round and getting better.
   var LOOP = "M160 60 A100 100 0 1 1 159.9 60";
   var OVAL = "M50 200 A110 68 0 1 1 270 200 A110 68 0 1 1 50 200";
-  var SYS_LOOP = "M185 120 H455 Q530 120 530 142 V258 Q530 280 455 280 H185 Q110 280 110 258 V142 Q110 120 185 120";
   // A rounded box centred on (x, y), drawn as one path so it can draw itself in.
   var R = function (x, y, w, h, cls) {
     var l = x - w / 2, t = y - h / 2, r = 8;
@@ -1225,12 +1126,6 @@ main.fading { opacity: 0; }
       T(116, 68, "AI", "", "end") + T(116, 86, "the repeat work", "cap", "end") +
       T(116, 126, "People", "", "end") + T(116, 144, "the judgement", "cap", "end") +
       T(215, 48, "hand over", "cap") + T(385, 166, "check", "cap") + T(555, 48, "decide", "cap") + "</svg>",
-    ocean: '<svg viewBox="0 0 640 230">' + C(100, 114, 62) + C(540, 114, 62) +
-      L(OUT) + L(BACK) + L("M170 96 l-10 8 13 3") + L("M470 132 l10 -8 -13 -3") + mover(OUT, "6s") + mover(BACK, "6s", "3s") +
-      C(320, 49, 5, "node") + C(320, 179, 5, "node") +
-      T(100, 110, "Europe") + T(100, 130, "the workshop", "cap") + T(540, 110, "United States") + T(540, 130, "the buyers", "cap") +
-      T(320, 30, "Enquiry, overnight") + T(320, 72, "sorted and summarised", "cap") +
-      T(320, 208, "Reply, promptly") + T(320, 162, "checked by a person", "cap") + "</svg>",
     call: icon(L("M16 26h52a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H40l-14 12V66H16a8 8 0 0 1-8-8V34a8 8 0 0 1 8-8z") + L("M22 42h40M22 52h26") +
       L("M84 50h20a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8h-6v12L86 88H64a8 8 0 0 1-8-8v-6")),
     design: icon(L("M28 10h48l16 16v84H28z") + L("M76 10v16h16") + C(46, 46, 6) + C(74, 66, 6) + C(48, 90, 6) +
@@ -1245,17 +1140,6 @@ main.fading { opacity: 0; }
       L("M31 35l22 20M89 35l-22 20M53 69l-22 20M67 69l22 20")),
     assistant: icon(L("M14 44h46v62H14z") + L("M24 34h46v62") + L("M24 60h26M24 72h26M24 84h16") +
       L("M72 14h34a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H92l-10 9v-9H72a6 6 0 0 1-6-6V20a6 6 0 0 1 6-6z") + L("M78 26h22M78 34h14")),
-    // VALDA, in summary only: four stages round a weekly plan, with a person approving what goes out.
-    system: '<svg viewBox="0 0 640 380">' + L(SYS_LOOP) + mover(SYS_LOOP, "12s") +
-      L("M320 108 V166", "faint") + L("M245 178 L185 142", "faint") + L("M395 178 L455 142", "faint") +
-      L("M395 202 L455 258", "faint") + L("M245 202 L185 258", "faint") +
-      C(320, 64, 42, "node") + R(320, 190, 150, 48) + R(110, 120, 150, 44) + R(530, 120, 150, 44) + R(530, 280, 150, 44) + R(110, 280, 150, 44) +
-      T(320, 68, "A person") + T(372, 30, "approves everything external", "cap", "start") +
-      T(320, 194, "Weekly plan") + T(320, 236, "priorities, reviewed", "cap") +
-      T(110, 124, "Find") + T(110, 88, "new openings", "cap") +
-      T(530, 124, "Reach") + T(530, 88, "the right people", "cap") +
-      T(530, 284, "Keep &amp; measure") + T(530, 330, "what worked", "cap") +
-      T(110, 284, "Create") + T(110, 330, "content and campaigns", "cap") + "</svg>",
     // VALDA marketing, in summary: a six-step monthly loop of content.
     mloop: '<svg viewBox="0 0 640 300">' + L("M110 70 H530 V230 H110 Z", "faint") + mover("M110 70 H530 V230 H110 Z", "12s") +
       L("M185 70 H245 M239 64 L245 70 L239 76") + L("M395 70 H455 M449 64 L455 70 L449 76") + L("M530 98 V202 M524 196 L530 202 L536 196") +
@@ -1351,15 +1235,13 @@ main.fading { opacity: 0; }
   if (!still) {
     // Only the big page titles rise word by word; everything else simply fades up.
     document.querySelectorAll("main .display").forEach(function (el) { el.classList.add("words"); words(el, "split"); });
-    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
+    document.querySelectorAll("main .eyebrow, main .h2, .phero .tags, main .intro, main .title-row .btn, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
       .forEach(function (el) { el.classList.add("rv"); });
     // Staggered groups: siblings come in one after another.
     document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects").forEach(function (g) {
-      Array.prototype.slice.call(g.children).forEach(function (c, i) { if (c.classList.contains("peek")) return; c.classList.add("rv"); c.style.setProperty("--d", (i * 110) + "ms"); });
+      Array.prototype.slice.call(g.children).forEach(function (c, i) { c.classList.add("rv"); c.style.setProperty("--d", (i * 110) + "ms"); });
     });
     document.querySelectorAll(".split .pic").forEach(function (el) { el.classList.add("unveil"); });
-    document.querySelectorAll(".hero .sub, .hero .foot .btn").forEach(function (el) { el.style.setProperty("--d", "450ms"); });
-    document.querySelectorAll(".hero .meta").forEach(function (el) { el.style.setProperty("--d", "650ms"); });
 
     io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
@@ -1372,24 +1254,13 @@ main.fading { opacity: 0; }
     if (view.getAttribute("data-view") === current) document.querySelectorAll("footer .words, footer .rv").forEach(function (el) { el.classList.remove("in"); io.observe(el); });
   }
 
-  // Scroll-linked: the statement lights up, photos drift, the hero eases back as you leave it.
+  // Scroll-linked: anything skipped is revealed, and the hero eases back as you leave it.
   var ticking = false;
   function frame() {
     ticking = false;
-    var vh = window.innerHeight, view = document.querySelector('[data-view="' + current + '"]');
+    var view = document.querySelector('[data-view="' + current + '"]');
     if (!view || still) return;
     catchUp();
-    view.querySelectorAll(".scrub").forEach(function (el) {
-      var r = el.getBoundingClientRect(), ws = el.querySelectorAll(".w");
-      var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.25)));
-      var lit = Math.round(p * ws.length);
-      ws.forEach(function (w, i) { w.classList.toggle("lit", i < lit); });
-    });
-    view.querySelectorAll("[data-par]").forEach(function (el) {
-      var r = el.parentNode.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      el.style.transform = "translate3d(0," + ((r.top + r.height / 2 - vh / 2) * -parseFloat(el.getAttribute("data-par"))).toFixed(1) + "px,0)";
-    });
     var hero = view.querySelector(".hero, .phero");
     if (hero) {
       var y = Math.min(window.scrollY, hero.offsetHeight);
@@ -1448,10 +1319,6 @@ main.fading { opacity: 0; }
     });
     openTab("marketing", false);
   }
-  // A story photo that is not there yet hides its frame instead of showing an empty box.
-  document.querySelectorAll(".panel-photo img").forEach(function (img) {
-    img.addEventListener("error", function () { img.parentNode.hidden = true; });
-  });
 
   // Services: one row open at a time; the panel beside the list draws that service's picture.
   var acc = document.getElementById("acc");
@@ -1551,7 +1418,7 @@ main.fading { opacity: 0; }
     });
   }
 
-  // Contact form. Not connected to an inbox yet, so it prepares the note for the visitor to send.
+  // Contact form. It opens the visitor's email app with the note written in; the copy box is the fallback.
   var form = document.getElementById("form");
   var sent = document.getElementById("sent");
   var err = document.getElementById("formError");
@@ -1567,8 +1434,10 @@ main.fading { opacity: 0; }
       (f.company.value.trim() ? "\nBusiness: " + f.company.value.trim() : "") +
       "\nArea: " + f.area.value + "\n\n" + f.message.value.trim();
     document.getElementById("summary").textContent = text;
-    document.getElementById("mailBtn").href = "mailto:hello@artofflow.studio?subject=" + encodeURIComponent("Enquiry from " + f.name.value.trim());
+    var mail = "mailto:hello@artofflow.studio?subject=" + encodeURIComponent("Enquiry from " + f.name.value.trim()) + "&body=" + encodeURIComponent(text);
+    document.getElementById("mailBtn").href = mail;
     form.hidden = true; sent.hidden = false;
+    window.location.href = mail;
   });
   document.getElementById("againBtn").addEventListener("click", function () { sent.hidden = true; form.hidden = false; });
   document.getElementById("copyBtn").addEventListener("click", function () {
