@@ -497,7 +497,24 @@ main.fading { opacity: 0; }
 .loop-fig { margin: 0; }
 .loop-fig .art { max-width: 340px; margin: 0 auto; --sw: 1.4; }
 
-/* VALDA: the two systems, each with its diagram, then who does what */
+/* VALDA: two problems, both solved. An overview pair, then one story each (problem, what we built, result). */
+.solved { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 24px); margin-top: clamp(40px, 5vw, 72px); }
+.solved-card { display: grid; gap: 12px; align-content: start; justify-items: start; padding: clamp(24px, 3vw, 36px); background: var(--beige); border-radius: 4px; text-decoration: none; color: var(--ink); border: 1px solid transparent; transition: border-color .4s; }
+.solved-card:hover { border-color: var(--ink); }
+.solved-card .h3 { font-size: clamp(24px, 2.4vw, 32px); }
+.solved-card .more { margin-top: 6px; }
+.story { scroll-margin-top: 72px; }
+.story-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); align-items: end; padding-bottom: clamp(28px, 3vw, 44px); border-bottom: 1px solid var(--ink); }
+.story-num { font-family: var(--serif); font-style: italic; font-size: clamp(64px, 9vw, 128px); line-height: .8; color: var(--ink); opacity: .3; }
+.psr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); padding-block: clamp(28px, 3vw, 44px); }
+.psr > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.psr p { margin: 0; }
+.psr-label { margin: 0; font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+.psr > div:last-child .psr-label { color: var(--ink); }
+.story .sys-fig { padding-top: clamp(12px, 2vw, 24px); }
+@media (max-width: 760px) {
+  .solved, .psr { grid-template-columns: minmax(0, 1fr); }
+}
 .sys-fig { padding-bottom: clamp(36px, 5vw, 64px); }
 .sys-fig .art { max-width: 760px; }
 .roles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); }
@@ -844,18 +861,18 @@ main.fading { opacity: 0; }
 </section>
 
 <!-- ============ PROJECT: VALDA ============ -->
-<section data-view="work-valda" data-project data-title="VALDA" data-summary="European windows and doors, built for the US." data-tags="Marketing, Sales, Clients" data-img="assets/valda-laptop.webp" data-alt="The VALDA website open on a laptop" hidden>
+<section data-view="work-valda" data-project data-title="VALDA" data-summary="European windows and doors, built for the US." data-tags="Marketing, Sales" data-img="assets/valda-laptop.webp" data-alt="The VALDA website open on a laptop" hidden>
   <div class="phero">
     <div class="film flowfield" aria-hidden="true"></div>
     <div class="wrap">
       <a class="eyebrow back" href="#work">All projects</a>
       <h1 class="display">VALDA. A window maker, selling across an ocean.</h1>
-      <span class="tags">Marketing, Sales, Clients</span>
+      <span class="tags">Marketing, Sales</span>
     </div>
   </div>
   <div class="sec">
     <div class="wrap">
-      <p class="intro">VALDA makes high-end windows and doors in Europe and exports them to the United States. Their product was excellent. The work around each sale was slowing them down.</p>
+      <p class="intro">VALDA makes high-end windows and doors in Europe and sells them in the United States. The product was excellent. Being seen in the US, and turning that attention into sales, was the hard part. We solved both.</p>
     </div>
   </div>
   <div class="sec" style="padding-top:0;border-top:0">
@@ -864,63 +881,73 @@ main.fading { opacity: 0; }
         <div><span class="eyebrow">Client</span><span>VALDA</span></div>
         <div><span class="eyebrow">Makes</span><span>Windows and doors</span></div>
         <div><span class="eyebrow">Market</span><span>United States</span></div>
-        <div><span class="eyebrow">Areas</span><span>Marketing, Sales, Clients</span></div>
+        <div><span class="eyebrow">Solved</span><span>Marketing and Sales</span></div>
       </div>
       <figure class="shot">
         <img src="assets/valda-laptop.webp" alt="The VALDA website open on a laptop: European windows and doors, built for the US" loading="lazy">
         <figcaption>VALDA online: European windows and doors, built for the US.</figcaption>
       </figure>
-      <figure class="ocean-fig">
-        <div class="art" data-art="ocean" role="img" aria-label="Enquiries cross from buyers in the United States to the workshop in Europe, and replies go back"></div>
-        <figcaption>Enquiries arrive overnight from the United States. Each one is sorted and summarised, and a reply goes back promptly.</figcaption>
-      </figure>
-      <div class="cs" style="border-top:0">
-        <h2 class="h3">The challenge</h2>
-        <div class="prose">
-          <p>Enquiries arrived from architects, dealers and homeowners, often overnight because of the time difference. Each one needed a careful reply: the right product, sizes converted between inches and millimetres, US requirements checked, and a quote put together by hand.</p>
-          <p>Replies took longer than buyers expected, follow-ups depended on who remembered, and a small team kept answering the same technical questions.</p>
-        </div>
+
+      <!-- overview: the two problems, both solved -->
+      <div class="solved">
+        <a class="solved-card" href="#work-valda-marketing">
+          <span class="eyebrow">01 &middot; Marketing</span>
+          <span class="h3">Seen by the right people in the US</span>
+          <span class="small">From occasional posts to a steady, approved presence that brings visitors to the website.</span>
+          <span class="more">Read the marketing story</span>
+        </a>
+        <a class="solved-card" href="#work-valda-sales">
+          <span class="eyebrow">02 &middot; Sales</span>
+          <span class="h3">Interest turned into conversations</span>
+          <span class="small">From leads that depended on spare time to warm prospects who all hear back personally.</span>
+          <span class="more">Read the sales story</span>
+        </a>
       </div>
-      <div class="cs">
-        <h2 class="h3">What we built</h2>
-        <div class="prose">
-          <p>Two connected systems: one keeps VALDA visible to the right people, the other turns that attention into conversations. Both run in the background, and a person approves everything that goes out.</p>
-        </div>
-      </div>
-      <div class="cs">
-        <div><span class="eyebrow">Part 1</span><h2 class="h3" style="margin-top:14px">Marketing</h2><p class="it small" style="margin-top:8px">A monthly loop of content.</p></div>
-        <div class="prose">
-          <p>Posts and short videos are made, planned on a calendar and approved, then published on a steady rhythm. They reach the right audience, who visit the website and ask for a quote.</p>
-          <p>Each month, what worked shapes what is made next.</p>
-        </div>
+    </div>
+  </div>
+
+  <!-- story 1: marketing -->
+  <div class="sec story" id="work-valda-marketing">
+    <div class="wrap">
+      <div class="story-head"><span class="story-num">01</span><div><span class="eyebrow">Marketing</span><h2 class="h2" style="margin-top:14px">Seen by the right people in the US.</h2></div></div>
+      <div class="psr">
+        <div><h3 class="psr-label">The problem</h3><p>Posting happened by hand, when someone had time. There was no steady presence in the US, and no clear view of what was working.</p></div>
+        <div><h3 class="psr-label">What we built</h3><p>A monthly content loop. Posts and short videos are made, planned on a calendar, approved by a person and published on a steady rhythm. Each month, what worked shapes what comes next.</p></div>
+        <div><h3 class="psr-label">The result</h3><p>VALDA now shows up consistently, in its own voice, for the audience that matters, and the plan improves every month.</p></div>
       </div>
       <figure class="wide-fig sys-fig">
         <div class="art" data-art="mloop" role="img" aria-label="Six steps in a loop: make, plan, publish, reach, visit, enquiry, and what worked shapes the next month"></div>
+        <figcaption>The marketing loop, in summary.</figcaption>
       </figure>
-      <div class="cs">
-        <div><span class="eyebrow">Part 2</span><h2 class="h3" style="margin-top:14px">Sales</h2><p class="it small" style="margin-top:8px">Warm leads in the US.</p></div>
-        <div class="prose">
-          <p>Warm prospects are found and engaged with genuinely, where they already spend time. Anyone who shows interest gets a personal message, and when a conversation turns into a quote request, a person takes over.</p>
-        </div>
+    </div>
+  </div>
+
+  <!-- story 2: sales -->
+  <div class="sec story" id="work-valda-sales">
+    <div class="wrap">
+      <div class="story-head"><span class="story-num">02</span><div><span class="eyebrow">Sales</span><h2 class="h2" style="margin-top:14px">Interest turned into conversations.</h2></div></div>
+      <div class="psr">
+        <div><h3 class="psr-label">The problem</h3><p>Finding new US leads depended on spare time, and with the time difference, people who showed interest could go unanswered.</p></div>
+        <div><h3 class="psr-label">What we built</h3><p>A warm-lead flow. The right prospects are found and engaged with genuinely. Anyone who shows interest gets a personal message, and when they ask for a quote, a person takes over.</p></div>
+        <div><h3 class="psr-label">The result</h3><p>A steady flow of warm US leads, every interested person hears back, and the team spends its time on real conversations.</p></div>
       </div>
       <figure class="wide-fig sys-fig">
         <div class="art" data-art="sales2" role="img" aria-label="Find warm prospects, engage, they show interest, a personal message, and a person takes over at the quote"></div>
+        <figcaption>The sales flow, in summary.</figcaption>
       </figure>
-      <div class="cs">
-        <div><span class="eyebrow">Who does what</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="cs" style="border-top:0;padding-top:0">
+        <div><span class="eyebrow">Who does what</span><h2 class="h3" style="margin-top:14px">Across both</h2></div>
         <div class="roles">
           <div><h3 class="h3">The system</h3><ul><li>Makes, plans and schedules content</li><li>Finds and engages warm prospects</li><li>Sends the first personal message</li><li>Checks what worked</li></ul></div>
           <div><h3 class="h3">The team</h3><ul><li>Supplies the photos</li><li>Approves everything that goes out</li><li>Replies and answers every lead</li></ul></div>
         </div>
       </div>
-      <p class="note" style="padding-bottom:clamp(28px,4vw,48px)">A summary only. The full design of both systems stays with VALDA.</p>
-      <div class="cs">
-        <h2 class="h3">What changed</h2>
-        <div class="prose">
-          <p>US buyers now hear back while they are still at their desks. Quotes start from a draft instead of a blank page, no open lead goes quiet without a follow-up, and the technical team spends its time on the projects that really need it.</p>
-          <p class="note">We do not publish client figures. We are happy to talk through this project in more detail on a call.</p>
-        </div>
-      </div>
+      <p class="note">A summary only. The full design of both systems stays with VALDA. We do not publish client figures, and we are happy to talk this project through on a call.</p>
       <div class="proj-nav"><a class="btn" href="#work">All projects</a><a class="btn" href="#contact" data-book>Book a call</a></div>
     </div>
   </div>
@@ -1324,10 +1351,10 @@ main.fading { opacity: 0; }
   if (!still) {
     // Only the big page titles rise word by word; everything else simply fades up.
     document.querySelectorAll("main .display").forEach(function (el) { el.classList.add("words"); words(el, "split"); });
-    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
+    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav, .story-head")
       .forEach(function (el) { el.classList.add("rv"); });
     // Staggered groups: siblings come in one after another.
-    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects").forEach(function (g) {
+    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects, .solved, .psr").forEach(function (g) {
       Array.prototype.slice.call(g.children).forEach(function (c, i) { if (c.classList.contains("peek")) return; c.classList.add("rv"); c.style.setProperty("--d", (i * 110) + "ms"); });
     });
     document.querySelectorAll(".split .pic").forEach(function (el) { el.classList.add("unveil"); });
@@ -1422,9 +1449,11 @@ main.fading { opacity: 0; }
 
   function show(hash) {
     var id = (hash || "").replace("#", "");
-    // A project page is a view of its own (work-valda); other dashed ids are sections inside a view.
-    var name = names.indexOf(id) !== -1 ? id : id.split("-")[0];
-    if (names.indexOf(name) === -1) { name = "home"; id = ""; }
+    // The view is the longest view name the id equals or starts with: work-valda-sales opens the
+    // work-valda page at its sales story, build-sales opens the build page at sales.
+    var name = "";
+    names.forEach(function (n) { if ((id === n || id.indexOf(n + "-") === 0) && n.length > name.length) name = n; });
+    if (!name) { name = "home"; id = ""; }
     if (name !== current) {
       if (current === null || still) swap(name, id);
       else {
