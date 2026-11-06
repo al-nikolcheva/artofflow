@@ -1,0 +1,6 @@
+# Pinterest reference photos: not ours, and no longer used by the site
+img/
+
+# Local backups and previews
+index-v*.html
+preview-*.png
