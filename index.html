@@ -497,26 +497,39 @@ main.fading { opacity: 0; }
 .loop-fig { margin: 0; }
 .loop-fig .art { max-width: 340px; margin: 0 auto; --sw: 1.4; }
 
-/* VALDA: two problems, both solved. An overview pair, then one story each (problem, what we built, result). */
-.solved { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 24px); margin-top: clamp(40px, 5vw, 72px); }
-.solved-card { display: grid; gap: 12px; align-content: start; justify-items: start; padding: clamp(24px, 3vw, 36px); background: var(--beige); border-radius: 4px; text-decoration: none; color: var(--ink); border: 1px solid transparent; transition: border-color .4s; }
-.solved-card:hover { border-color: var(--ink); }
-.solved-card .h3 { font-size: clamp(24px, 2.4vw, 32px); }
-.solved-card .more { margin-top: 6px; }
-.story { scroll-margin-top: 72px; }
-.story-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); align-items: end; padding-bottom: clamp(28px, 3vw, 44px); border-bottom: 1px solid var(--ink); }
-.story-num { font-family: var(--serif); font-style: italic; font-size: clamp(64px, 9vw, 128px); line-height: .8; color: var(--ink); opacity: .3; }
-.psr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); padding-block: clamp(28px, 3vw, 44px); }
-.psr > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
-.psr p { margin: 0; }
-.psr-label { margin: 0; font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
-.psr > div:last-child .psr-label { color: var(--ink); }
-.story .sys-fig { padding-top: clamp(12px, 2vw, 24px); }
+/* VALDA: two stories behind one switch. The switch is a two-part control; the selected half fills
+   dark and the pill slides under it. Each story is full width: title, photo, diagram, then
+   problem / what we built / result stacked in large type. */
+.switch-sec { scroll-margin-top: 72px; }
+.switch { position: relative; display: grid; grid-template-columns: 1fr 1fr; margin-top: 22px; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; isolation: isolate; }
+.switch-pill { position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--ink); z-index: -1; transition: transform .7s var(--ease); }
+.switch[data-on="sales"] .switch-pill { transform: translateX(100%); }
+.switch button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: baseline; gap: clamp(12px, 2vw, 22px); padding: clamp(20px, 3vw, 34px) clamp(20px, 3vw, 40px); color: var(--ink); transition: color .5s; }
+.switch button[aria-selected="true"] { color: var(--paper); }
+.switch button:focus-visible { outline: 2px solid var(--soft); outline-offset: -6px; }
+.sw-num { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; opacity: .6; }
+.sw-name { font-family: var(--serif); font-size: clamp(30px, 4vw, 58px); line-height: 1; letter-spacing: -.01em; }
+.switch button:not([aria-selected="true"]):hover .sw-name { font-style: italic; }
+.panel { padding-top: clamp(44px, 6vw, 88px); scroll-margin-top: 72px; }
+.panel.enter { animation: panel-in .8s var(--ease) both; }
+@keyframes panel-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.panel-title { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5.4vw, 76px); line-height: 1.04; letter-spacing: -.015em; max-width: 14em; text-wrap: balance; color: var(--ink); }
+.panel-photo { margin-top: clamp(32px, 4vw, 56px); aspect-ratio: 16 / 7; border-radius: 6px; overflow: hidden; background: var(--beige); max-width: 100%; }
+.panel-photo img { width: 100%; height: 100%; object-fit: cover; }
+.panel[data-panel="marketing"] .panel-photo img { object-position: center 28%; }
+.panel[data-panel="sales"] .panel-photo img { object-position: center 55%; }
+.panel-fig { margin: clamp(36px, 5vw, 72px) auto 0; max-width: 820px; }
+.panel-fig .art { --sw: 1.2; }
+.psr2 { margin-top: clamp(36px, 5vw, 72px); border-top: 1px solid var(--ink); }
+.psr2 > div { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: clamp(20px, 4vw, 64px); padding-block: clamp(22px, 3vw, 36px); border-bottom: 1px solid var(--line); }
+.psr2 p { margin: 0; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.55; color: #3E3935; max-width: 34em; }
+.psr2 .result p { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 30px); line-height: 1.35; color: var(--ink); }
+.psr-label { margin: 0; padding-top: .45em; font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+.psr2 .result .psr-label { color: var(--ink); }
 @media (max-width: 760px) {
-  .solved, .psr { grid-template-columns: minmax(0, 1fr); }
+  .psr2 > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .panel-photo { aspect-ratio: 4 / 3; }
 }
-.sys-fig { padding-bottom: clamp(36px, 5vw, 64px); }
-.sys-fig .art { max-width: 760px; }
 .roles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); }
 .roles > div { border-top: 1px solid var(--ink); padding-top: 18px; display: grid; gap: 12px; align-content: start; }
 .roles ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
@@ -888,53 +901,40 @@ main.fading { opacity: 0; }
         <figcaption>VALDA online: European windows and doors, built for the US.</figcaption>
       </figure>
 
-      <!-- overview: the two problems, both solved -->
-      <div class="solved">
-        <a class="solved-card" href="#work-valda-marketing">
-          <span class="eyebrow">01 &middot; Marketing</span>
-          <span class="h3">Seen by the right people in the US</span>
-          <span class="small">From occasional posts to a steady, approved presence that brings visitors to the website.</span>
-          <span class="more">Read the marketing story</span>
-        </a>
-        <a class="solved-card" href="#work-valda-sales">
-          <span class="eyebrow">02 &middot; Sales</span>
-          <span class="h3">Interest turned into conversations</span>
-          <span class="small">From leads that depended on spare time to warm prospects who all hear back personally.</span>
-          <span class="more">Read the sales story</span>
-        </a>
-      </div>
     </div>
   </div>
 
-  <!-- story 1: marketing -->
-  <div class="sec story" id="work-valda-marketing">
+  <!-- the two stories behind one switch: one shows at a time -->
+  <div class="sec switch-sec">
     <div class="wrap">
-      <div class="story-head"><span class="story-num">01</span><div><span class="eyebrow">Marketing</span><h2 class="h2" style="margin-top:14px">Seen by the right people in the US.</h2></div></div>
-      <div class="psr">
-        <div><h3 class="psr-label">The problem</h3><p>Posting happened by hand, when someone had time. There was no steady presence in the US, and no clear view of what was working.</p></div>
-        <div><h3 class="psr-label">What we built</h3><p>A monthly content loop. Posts and short videos are made, planned on a calendar, approved by a person and published on a steady rhythm. Each month, what worked shapes what comes next.</p></div>
-        <div><h3 class="psr-label">The result</h3><p>VALDA now shows up consistently, in its own voice, for the audience that matters, and the plan improves every month.</p></div>
+      <span class="eyebrow">Two problems, both solved</span>
+      <div class="switch" role="tablist" aria-label="VALDA stories">
+        <span class="switch-pill" aria-hidden="true"></span>
+        <button type="button" role="tab" id="tab-marketing" aria-controls="work-valda-marketing" aria-selected="true" data-tab="marketing"><span class="sw-num">01</span><span class="sw-name">Marketing</span></button>
+        <button type="button" role="tab" id="tab-sales" aria-controls="work-valda-sales" aria-selected="false" data-tab="sales"><span class="sw-num">02</span><span class="sw-name">Sales</span></button>
       </div>
-      <figure class="wide-fig sys-fig">
-        <div class="art" data-art="mloop" role="img" aria-label="Six steps in a loop: make, plan, publish, reach, visit, enquiry, and what worked shapes the next month"></div>
-        <figcaption>The marketing loop, in summary.</figcaption>
-      </figure>
-    </div>
-  </div>
 
-  <!-- story 2: sales -->
-  <div class="sec story" id="work-valda-sales">
-    <div class="wrap">
-      <div class="story-head"><span class="story-num">02</span><div><span class="eyebrow">Sales</span><h2 class="h2" style="margin-top:14px">Interest turned into conversations.</h2></div></div>
-      <div class="psr">
-        <div><h3 class="psr-label">The problem</h3><p>Finding new US leads depended on spare time, and with the time difference, people who showed interest could go unanswered.</p></div>
-        <div><h3 class="psr-label">What we built</h3><p>A warm-lead flow. The right prospects are found and engaged with genuinely. Anyone who shows interest gets a personal message, and when they ask for a quote, a person takes over.</p></div>
-        <div><h3 class="psr-label">The result</h3><p>A steady flow of warm US leads, every interested person hears back, and the team spends its time on real conversations.</p></div>
+      <div class="panel" role="tabpanel" id="work-valda-marketing" aria-labelledby="tab-marketing" data-panel="marketing">
+        <h2 class="panel-title">Seen by the right people <span class="it">in the US.</span></h2>
+        <div class="panel-photo"><img src="assets/valda-marketing.jpg" alt="A tidy desk from above: laptop, open notebook and pen" loading="lazy"></div>
+        <figure class="panel-fig"><div class="art" data-art="mloop" role="img" aria-label="Six steps in a loop: make, plan, publish, reach, visit, enquiry, and what worked shapes the next month"></div></figure>
+        <div class="psr2">
+          <div><span class="psr-label">The problem</span><p>Posting happened by hand, when someone had time. There was no steady presence in the US, and no clear view of what was working.</p></div>
+          <div><span class="psr-label">What we built</span><p>A monthly content loop. Posts and short videos are made, planned on a calendar, approved by a person and published on a steady rhythm. Each month, what worked shapes what comes next.</p></div>
+          <div class="result"><span class="psr-label">The result</span><p>VALDA now shows up consistently, in its own voice, for the audience that matters, and the plan gets better every month.</p></div>
+        </div>
       </div>
-      <figure class="wide-fig sys-fig">
-        <div class="art" data-art="sales2" role="img" aria-label="Find warm prospects, engage, they show interest, a personal message, and a person takes over at the quote"></div>
-        <figcaption>The sales flow, in summary.</figcaption>
-      </figure>
+
+      <div class="panel" role="tabpanel" id="work-valda-sales" aria-labelledby="tab-sales" data-panel="sales" hidden>
+        <h2 class="panel-title">Interest turned into <span class="it">conversations.</span></h2>
+        <div class="panel-photo"><img src="assets/valda-sales.jpg" alt="Horses running along the shore, blurred with speed" loading="lazy"></div>
+        <figure class="panel-fig"><div class="art" data-art="sales2" role="img" aria-label="Find warm prospects, engage, they show interest, a personal message, and a person takes over at the quote"></div></figure>
+        <div class="psr2">
+          <div><span class="psr-label">The problem</span><p>Finding new US leads depended on spare time, and with the time difference, people who showed interest could go unanswered.</p></div>
+          <div><span class="psr-label">What we built</span><p>A warm-lead flow. The right prospects are found and engaged with genuinely. Anyone who shows interest gets a personal message, and when they ask for a quote, a person takes over.</p></div>
+          <div class="result"><span class="psr-label">The result</span><p>A steady flow of warm US leads. Every interested person hears back, and the team spends its time on real conversations.</p></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1351,10 +1351,10 @@ main.fading { opacity: 0; }
   if (!still) {
     // Only the big page titles rise word by word; everything else simply fades up.
     document.querySelectorAll("main .display").forEach(function (el) { el.classList.add("words"); words(el, "split"); });
-    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav, .story-head")
+    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
       .forEach(function (el) { el.classList.add("rv"); });
     // Staggered groups: siblings come in one after another.
-    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects, .solved, .psr").forEach(function (g) {
+    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects").forEach(function (g) {
       Array.prototype.slice.call(g.children).forEach(function (c, i) { if (c.classList.contains("peek")) return; c.classList.add("rv"); c.style.setProperty("--d", (i * 110) + "ms"); });
     });
     document.querySelectorAll(".split .pic").forEach(function (el) { el.classList.add("unveil"); });
@@ -1414,6 +1414,44 @@ main.fading { opacity: 0; }
     var t = Date.now(); if (t - lastCatch > 150) { lastCatch = t; catchUp(); }
   }, { passive: true });
   window.addEventListener("resize", req);
+
+  // VALDA switch: one story at a time. The pill slides, the story fades in and its diagram redraws.
+  var sw = document.querySelector(".switch");
+  function openTab(key, animate) {
+    if (!sw) return;
+    sw.setAttribute("data-on", key);
+    sw.querySelectorAll("button").forEach(function (b) {
+      var on = b.getAttribute("data-tab") === key;
+      b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll(".panel").forEach(function (p) {
+      var on = p.getAttribute("data-panel") === key;
+      p.hidden = !on;
+      if (!on) return;
+      p.classList.remove("enter");
+      if (animate && !still) { void p.offsetWidth; p.classList.add("enter"); }
+      var a = p.querySelector(".art");
+      if (a && !still) { a.classList.remove("in"); void a.offsetWidth; a.classList.add("in"); }
+    });
+  }
+  if (sw) {
+    var keys = Array.prototype.map.call(sw.querySelectorAll("button"), function (b) { return b.getAttribute("data-tab"); });
+    sw.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      openTab(b.getAttribute("data-tab"), true);
+      try { history.replaceState(null, "", "#work-valda-" + b.getAttribute("data-tab")); } catch (err) {}
+    });
+    sw.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      var k = keys[(keys.indexOf(sw.getAttribute("data-on")) + (e.key === "ArrowRight" ? 1 : keys.length - 1)) % keys.length];
+      openTab(k, true); sw.querySelector('[data-tab="' + k + '"]').focus();
+    });
+    openTab("marketing", false);
+  }
+  // A story photo that is not there yet hides its frame instead of showing an empty box.
+  document.querySelectorAll(".panel-photo img").forEach(function (img) {
+    img.addEventListener("error", function () { img.parentNode.hidden = true; });
+  });
 
   // Services: one row open at a time; the panel beside the list draws that service's picture.
   var acc = document.getElementById("acc");
@@ -1475,6 +1513,8 @@ main.fading { opacity: 0; }
   function goTo(id, name) {
     if (!id || id === name) return;
     var el = document.getElementById(id);
+    // A link to one of the VALDA stories opens that side of the switch and scrolls to the switch.
+    if (el && el.classList.contains("panel")) { openTab(el.getAttribute("data-panel"), false); el = el.closest(".switch-sec"); }
     if (el) setTimeout(function () { el.scrollIntoView({ block: "start" }); setTimeout(catchUp, 400); }, 30);
   }
 
