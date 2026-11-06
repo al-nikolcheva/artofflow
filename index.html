@@ -497,6 +497,16 @@ main.fading { opacity: 0; }
 .loop-fig { margin: 0; }
 .loop-fig .art { max-width: 340px; margin: 0 auto; --sw: 1.4; }
 
+/* VALDA: the two systems, each with its diagram, then who does what */
+.sys-fig { padding-bottom: clamp(36px, 5vw, 64px); }
+.sys-fig .art { max-width: 760px; }
+.roles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); }
+.roles > div { border-top: 1px solid var(--ink); padding-top: 18px; display: grid; gap: 12px; align-content: start; }
+.roles ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.roles li { padding-left: 22px; position: relative; }
+.roles li::before { content: "\2014"; position: absolute; left: 0; color: var(--soft); }
+@media (max-width: 760px) { .roles { grid-template-columns: minmax(0, 1fr); } }
+
 /* projects: a card per project, each opening its own page */
 .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: clamp(32px, 4vw, 56px); }
 .card { display: grid; gap: 22px; align-content: start; text-decoration: none; color: var(--ink); }
@@ -874,18 +884,36 @@ main.fading { opacity: 0; }
       <div class="cs">
         <h2 class="h3">What we built</h2>
         <div class="prose">
-          <p>A marketing and sales system that runs around a single weekly plan. It works in four stages:</p>
-          <p><b>Find.</b> New openings and opportunities in the US market are spotted and brought in.</p>
-          <p><b>Reach.</b> The right people hear from VALDA, warmly and in its own voice.</p>
-          <p><b>Keep and measure.</b> Clients are looked after, and what worked is measured each week.</p>
-          <p><b>Create.</b> Content and campaigns are prepared from what the plan needs next.</p>
-          <p>A person approves everything that goes out. Each week, what worked feeds the next plan.</p>
+          <p>Two connected systems: one keeps VALDA visible to the right people, the other turns that attention into conversations. Both run in the background, and a person approves everything that goes out.</p>
         </div>
       </div>
-      <figure class="wide-fig" style="padding-block:clamp(36px,5vw,64px);border-top:1px solid var(--line)">
-        <div class="art" data-art="system" role="img" aria-label="Find, Reach, Keep and measure, and Create, in a loop around a weekly plan, with a person approving everything external"></div>
-        <figcaption>The system in short. A summary only; the full design stays with VALDA.</figcaption>
+      <div class="cs">
+        <div><span class="eyebrow">Part 1</span><h2 class="h3" style="margin-top:14px">Marketing</h2><p class="it small" style="margin-top:8px">A monthly loop of content.</p></div>
+        <div class="prose">
+          <p>Posts and short videos are made, planned on a calendar and approved, then published on a steady rhythm. They reach the right audience, who visit the website and ask for a quote.</p>
+          <p>Each month, what worked shapes what is made next.</p>
+        </div>
+      </div>
+      <figure class="wide-fig sys-fig">
+        <div class="art" data-art="mloop" role="img" aria-label="Six steps in a loop: make, plan, publish, reach, visit, enquiry, and what worked shapes the next month"></div>
       </figure>
+      <div class="cs">
+        <div><span class="eyebrow">Part 2</span><h2 class="h3" style="margin-top:14px">Sales</h2><p class="it small" style="margin-top:8px">Warm leads in the US.</p></div>
+        <div class="prose">
+          <p>Warm prospects are found and engaged with genuinely, where they already spend time. Anyone who shows interest gets a personal message, and when a conversation turns into a quote request, a person takes over.</p>
+        </div>
+      </div>
+      <figure class="wide-fig sys-fig">
+        <div class="art" data-art="sales2" role="img" aria-label="Find warm prospects, engage, they show interest, a personal message, and a person takes over at the quote"></div>
+      </figure>
+      <div class="cs">
+        <div><span class="eyebrow">Who does what</span></div>
+        <div class="roles">
+          <div><h3 class="h3">The system</h3><ul><li>Makes, plans and schedules content</li><li>Finds and engages warm prospects</li><li>Sends the first personal message</li><li>Checks what worked</li></ul></div>
+          <div><h3 class="h3">The team</h3><ul><li>Supplies the photos</li><li>Approves everything that goes out</li><li>Replies and answers every lead</li></ul></div>
+        </div>
+      </div>
+      <p class="note" style="padding-bottom:clamp(28px,4vw,48px)">A summary only. The full design of both systems stays with VALDA.</p>
       <div class="cs">
         <h2 class="h3">What changed</h2>
         <div class="prose">
@@ -1138,8 +1166,9 @@ main.fading { opacity: 0; }
       "V" + (t + r) + "A" + r + " " + r + " 0 0 1 " + (l + r) + " " + t + "Z", "node" + (cls ? " " + cls : ""));
   };
   // Braid: two lines, AI and people, crossing at the hand-overs.
-  var AI_LINE = "M20 70 C120 70 140 130 240 130 S360 70 460 70 S560 130 620 130";
-  var PEOPLE = "M20 130 C120 130 140 70 240 70 S360 130 460 130 S560 70 620 70";
+  // Three equal, symmetric segments, so the lines cross exactly at x = 215, 385 and 555.
+  var AI_LINE = "M130 70 C215 70 215 130 300 130 S385 70 470 70 S555 130 640 130";
+  var PEOPLE = "M130 130 C215 130 215 70 300 70 S385 130 470 130 S555 70 640 70";
   var ART = {
     flow: '<svg viewBox="0 0 640 230">' + L(FLOW) + mover(FLOW, "8s") +
       C(50, 160, 6, "node") + C(185, 70, 6, "node") + C(320, 160, 6, "node") + C(455, 70, 6, "node") + C(590, 160, 6, "node") +
@@ -1164,11 +1193,11 @@ main.fading { opacity: 0; }
       C(160, 60, 6, "node") + C(260, 160, 6, "node") + C(160, 260, 6, "node") + C(60, 160, 6, "node") +
       T(160, 36, "Live") + T(286, 164, "Watch", "", "start") + T(160, 292, "Adjust") + T(34, 164, "Improve", "", "end") +
       T(160, 156, "Care", "cap") + T(160, 176, "after launch", "cap") + "</svg>",
-    braid: '<svg viewBox="0 0 640 200">' + L(AI_LINE) + L(PEOPLE) + mover(AI_LINE, "8s") + mover(PEOPLE, "8s", "4s") +
-      C(130, 100, 6, "node") + C(350, 100, 6, "node") + C(540, 100, 6, "node") +
-      T(20, 52, "AI", "", "start") + T(52, 52, "the repeat work", "cap", "start") +
-      T(20, 160, "People", "", "start") + T(84, 160, "the judgement", "cap", "start") +
-      T(130, 186, "hand over", "cap") + T(350, 24, "check", "cap") + T(540, 186, "decide", "cap") + "</svg>",
+    braid: '<svg viewBox="0 0 650 190">' + L(AI_LINE) + L(PEOPLE) + mover(AI_LINE, "8s") + mover(PEOPLE, "8s", "4s") +
+      C(215, 100, 6, "node") + C(385, 100, 6, "node") + C(555, 100, 6, "node") +
+      T(116, 68, "AI", "", "end") + T(116, 86, "the repeat work", "cap", "end") +
+      T(116, 126, "People", "", "end") + T(116, 144, "the judgement", "cap", "end") +
+      T(215, 48, "hand over", "cap") + T(385, 166, "check", "cap") + T(555, 48, "decide", "cap") + "</svg>",
     ocean: '<svg viewBox="0 0 640 230">' + C(100, 114, 62) + C(540, 114, 62) +
       L(OUT) + L(BACK) + L("M170 96 l-10 8 13 3") + L("M470 132 l10 -8 -13 -3") + mover(OUT, "6s") + mover(BACK, "6s", "3s") +
       C(320, 49, 5, "node") + C(320, 179, 5, "node") +
@@ -1200,6 +1229,23 @@ main.fading { opacity: 0; }
       T(530, 124, "Reach") + T(530, 88, "the right people", "cap") +
       T(530, 284, "Keep &amp; measure") + T(530, 330, "what worked", "cap") +
       T(110, 284, "Create") + T(110, 330, "content and campaigns", "cap") + "</svg>",
+    // VALDA marketing, in summary: a six-step monthly loop of content.
+    mloop: '<svg viewBox="0 0 640 300">' + L("M110 70 H530 V230 H110 Z", "faint") + mover("M110 70 H530 V230 H110 Z", "12s") +
+      L("M185 70 H245 M239 64 L245 70 L239 76") + L("M395 70 H455 M449 64 L455 70 L449 76") + L("M530 98 V202 M524 196 L530 202 L536 196") +
+      L("M455 230 H395 M401 224 L395 230 L401 236") + L("M245 230 H185 M191 224 L185 230 L191 236") + L("M110 202 V98 M104 104 L110 98 L116 104") +
+      R(110, 70, 150, 56) + R(320, 70, 150, 56) + R(530, 70, 150, 56) + R(530, 230, 150, 56) + R(320, 230, 150, 56) + R(110, 230, 150, 56) +
+      T(110, 66, "1 Make") + T(110, 86, "posts and videos", "cap") + T(320, 66, "2 Plan") + T(320, 86, "a person approves", "cap") +
+      T(530, 66, "3 Publish") + T(530, 86, "on a steady rhythm", "cap") + T(530, 226, "4 Reach") + T(530, 246, "the right audience", "cap") +
+      T(320, 226, "5 Visit") + T(320, 246, "the website", "cap") + T(110, 226, "6 Enquiry") + T(110, 246, "a quick reply", "cap") +
+      T(320, 156, "what worked shapes the next month", "cap") + "</svg>",
+    // VALDA sales, in summary: warm leads, a personal message, then a person takes over.
+    sales2: '<svg viewBox="0 0 640 230">' + L(FLOW) + mover(FLOW, "8s") +
+      C(50, 160, 6, "node") + C(185, 70, 6, "node") + C(320, 160, 6, "node") + C(455, 70, 6, "node") + C(590, 160, 6, "node") +
+      T(30, 196, "Find", "", "start") + T(30, 214, "warm prospects", "cap", "start") +
+      T(185, 42, "Engage") + T(185, 24, "genuine interaction", "cap") +
+      T(320, 196, "Interest") + T(320, 214, "they respond or follow", "cap") +
+      T(455, 42, "Message") + T(455, 24, "a personal note", "cap") +
+      T(610, 196, "Quote", "", "end") + T(610, 214, "a person takes over", "cap", "end") + "</svg>",
     // The AOF oval, drawn in, with a dot travelling round it.
     mark: '<svg viewBox="0 0 320 400">' + L(OVAL) + L("M30 200 A130 82 0 1 1 290 200 A130 82 0 1 1 30 200", "faint") +
       L("M70 200 A90 54 0 1 1 250 200 A90 54 0 1 1 70 200", "faint") + mover(OVAL, "10s") +
