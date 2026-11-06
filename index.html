@@ -497,6 +497,30 @@ main.fading { opacity: 0; }
 .loop-fig { margin: 0; }
 .loop-fig .art { max-width: 340px; margin: 0 auto; --sw: 1.4; }
 
+/* projects: a card per project, each opening its own page */
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: clamp(32px, 4vw, 56px); }
+.card { display: grid; gap: 22px; align-content: start; text-decoration: none; color: var(--ink); }
+.card-img { aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: var(--beige); max-width: 100%; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; transition: transform 1.4s var(--ease); }
+.card:hover .card-img img { transform: scale(1.04); }
+.card-txt { display: grid; gap: 10px; justify-items: start; min-width: 0; }
+.card-txt .tags { color: var(--soft); }
+.card-txt .h3 { font-size: clamp(30px, 3.2vw, 46px); line-height: 1.05; }
+.card-txt p { margin: 0 0 6px; }
+/* one project so far: lay it out wide, picture beside the words */
+.projects:has(> .card:only-child) { grid-template-columns: minmax(0, 1fr); }
+.projects:has(> .card:only-child) .card { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); align-items: end; gap: clamp(28px, 5vw, 80px); }
+.projects:has(> .card:only-child) .card-img { aspect-ratio: 4 / 3; }
+.eyebrow.back { text-decoration: none; }
+.eyebrow.back::before { content: "\2190"; font-size: 13px; }
+.shot { margin: clamp(40px, 5vw, 72px) 0 0; padding-bottom: clamp(36px, 5vw, 64px); border-bottom: 1px solid var(--line); }
+.shot img { width: 100%; max-width: 720px; margin: 0 auto; border-radius: 4px; }
+.shot figcaption { margin-top: 14px; text-align: center; font-size: 13.5px; color: var(--soft); }
+.proj-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-top: clamp(24px, 3vw, 40px); padding-top: clamp(28px, 3vw, 44px); border-top: 1px solid var(--line); }
+@media (max-width: 760px) {
+  .projects:has(> .card:only-child) .card { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* motion in place of photos */
 .flowfield { background: var(--black) !important; }
 .flowfield canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
@@ -593,17 +617,9 @@ main.fading { opacity: 0; }
     <div class="wrap">
       <div class="title-row">
         <div><span class="eyebrow">Work</span><h2 class="h2">Selected work</h2></div>
-        <a class="btn" href="#work">View case study</a>
+        <a class="btn" href="#work">All projects</a>
       </div>
-      <a class="tile unveil" href="#work">
-        <div class="img flowfield" aria-hidden="true"></div>
-        <div class="inner">
-          <h3 class="h2">European window manufacturer</h3>
-          <span class="tags">Clients, Sales, Team assistant</span>
-          <span class="btn" style="margin-top:10px">Case study</span>
-        </div>
-      </a>
-      <div class="soon small"><span>Exporting to the United States. Name kept private.</span><span class="it">More case studies soon.</span></div>
+      <div class="projects" data-projects data-limit="3"></div>
     </div>
   </div>
 
@@ -797,29 +813,53 @@ main.fading { opacity: 0; }
   </div>
 </section>
 
-<!-- ============ WORK ============ -->
+<!-- ============ WORK: all projects ============
+     The project cards are built from the project pages below (any section with data-project),
+     so adding a project means copying one project section and changing its details. -->
 <section data-view="work" hidden>
   <div class="phero">
     <div class="film flowfield" aria-hidden="true"></div>
     <div class="wrap">
-      <span class="eyebrow">Case study</span>
-      <h1 class="display">A window maker, selling across an ocean.</h1>
-      <span class="tags">Clients, Sales, Team assistant</span>
+      <span class="eyebrow">Work</span>
+      <h1 class="display">Projects</h1>
     </div>
   </div>
   <div class="sec">
     <div class="wrap">
-      <p class="intro">A European manufacturer of high-end windows and doors, exporting to the United States. Their product was excellent. The work around each sale was slowing them down.</p>
+      <p class="intro" style="margin-bottom:clamp(40px,5vw,64px)">Systems we have built for businesses that care about how things are done. Choose a project to read the full story.</p>
+      <div class="projects" data-projects></div>
+      <p class="soon small"><span class="it">More projects coming soon.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECT: VALDA ============ -->
+<section data-view="work-valda" data-project data-title="VALDA" data-summary="European windows and doors, built for the US." data-tags="Marketing, Sales, Clients" data-img="assets/valda-laptop.webp" data-alt="The VALDA website open on a laptop" hidden>
+  <div class="phero">
+    <div class="film flowfield" aria-hidden="true"></div>
+    <div class="wrap">
+      <a class="eyebrow back" href="#work">All projects</a>
+      <h1 class="display">VALDA. A window maker, selling across an ocean.</h1>
+      <span class="tags">Marketing, Sales, Clients</span>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <p class="intro">VALDA makes high-end windows and doors in Europe and exports them to the United States. Their product was excellent. The work around each sale was slowing them down.</p>
     </div>
   </div>
   <div class="sec" style="padding-top:0;border-top:0">
     <div class="wrap">
       <div class="facts">
-        <div><span class="eyebrow">Client</span><span>Window and door manufacturer</span></div>
+        <div><span class="eyebrow">Client</span><span>VALDA</span></div>
+        <div><span class="eyebrow">Makes</span><span>Windows and doors</span></div>
         <div><span class="eyebrow">Market</span><span>United States</span></div>
-        <div><span class="eyebrow">Areas</span><span>Clients, Sales, Team assistant</span></div>
-        <div><span class="eyebrow">Name</span><span class="it">Kept private</span></div>
+        <div><span class="eyebrow">Areas</span><span>Marketing, Sales, Clients</span></div>
       </div>
+      <figure class="shot">
+        <img src="assets/valda-laptop.webp" alt="The VALDA website open on a laptop: European windows and doors, built for the US" loading="lazy">
+        <figcaption>VALDA online: European windows and doors, built for the US.</figcaption>
+      </figure>
       <figure class="ocean-fig">
         <div class="art" data-art="ocean" role="img" aria-label="Enquiries cross from buyers in the United States to the workshop in Europe, and replies go back"></div>
         <figcaption>Enquiries arrive overnight from the United States. Each one is sorted and summarised, and a reply goes back promptly.</figcaption>
@@ -834,12 +874,18 @@ main.fading { opacity: 0; }
       <div class="cs">
         <h2 class="h3">What we built</h2>
         <div class="prose">
-          <p><b>An enquiry desk that never sleeps.</b> Every new enquiry gets a prompt, accurate first reply. It collects the project details, sorts the enquiry by type and region, and passes it to the right person with a short summary.</p>
-          <p><b>Quote drafts from their own catalogue.</b> Drawings and requests are turned into a first draft quote using the company&rsquo;s own products and prices, ready for a person to check and send.</p>
-          <p><b>Follow-ups on time.</b> Open quotes are followed up at sensible intervals, in the company&rsquo;s tone, until there is an answer.</p>
-          <p><b>A product assistant for the team.</b> Staff ask about specifications, finishes and lead times and get answers drawn from the company&rsquo;s own documents.</p>
+          <p>A marketing and sales system that runs around a single weekly plan. It works in four stages:</p>
+          <p><b>Find.</b> New openings and opportunities in the US market are spotted and brought in.</p>
+          <p><b>Reach.</b> The right people hear from VALDA, warmly and in its own voice.</p>
+          <p><b>Keep and measure.</b> Clients are looked after, and what worked is measured each week.</p>
+          <p><b>Create.</b> Content and campaigns are prepared from what the plan needs next.</p>
+          <p>A person approves everything that goes out. Each week, what worked feeds the next plan.</p>
         </div>
       </div>
+      <figure class="wide-fig" style="padding-block:clamp(36px,5vw,64px);border-top:1px solid var(--line)">
+        <div class="art" data-art="system" role="img" aria-label="Find, Reach, Keep and measure, and Create, in a loop around a weekly plan, with a person approving everything external"></div>
+        <figcaption>The system in short. A summary only; the full design stays with VALDA.</figcaption>
+      </figure>
       <div class="cs">
         <h2 class="h3">What changed</h2>
         <div class="prose">
@@ -847,6 +893,7 @@ main.fading { opacity: 0; }
           <p class="note">We do not publish client figures. We are happy to talk through this project in more detail on a call.</p>
         </div>
       </div>
+      <div class="proj-nav"><a class="btn" href="#work">All projects</a><a class="btn" href="#contact" data-book>Book a call</a></div>
     </div>
   </div>
 </section>
@@ -1082,6 +1129,14 @@ main.fading { opacity: 0; }
   // Loop: once live, the work keeps going round and getting better.
   var LOOP = "M160 60 A100 100 0 1 1 159.9 60";
   var OVAL = "M50 200 A110 68 0 1 1 270 200 A110 68 0 1 1 50 200";
+  var SYS_LOOP = "M185 120 H455 Q530 120 530 142 V258 Q530 280 455 280 H185 Q110 280 110 258 V142 Q110 120 185 120";
+  // A rounded box centred on (x, y), drawn as one path so it can draw itself in.
+  var R = function (x, y, w, h, cls) {
+    var l = x - w / 2, t = y - h / 2, r = 8;
+    return L("M" + (l + r) + " " + t + "H" + (l + w - r) + "A" + r + " " + r + " 0 0 1 " + (l + w) + " " + (t + r) + "V" + (t + h - r) +
+      "A" + r + " " + r + " 0 0 1 " + (l + w - r) + " " + (t + h) + "H" + (l + r) + "A" + r + " " + r + " 0 0 1 " + l + " " + (t + h - r) +
+      "V" + (t + r) + "A" + r + " " + r + " 0 0 1 " + (l + r) + " " + t + "Z", "node" + (cls ? " " + cls : ""));
+  };
   // Braid: two lines, AI and people, crossing at the hand-overs.
   var AI_LINE = "M20 70 C120 70 140 130 240 130 S360 70 460 70 S560 130 620 130";
   var PEOPLE = "M20 130 C120 130 140 70 240 70 S360 130 460 130 S560 70 620 70";
@@ -1134,6 +1189,17 @@ main.fading { opacity: 0; }
       L("M31 35l22 20M89 35l-22 20M53 69l-22 20M67 69l22 20")),
     assistant: icon(L("M14 44h46v62H14z") + L("M24 34h46v62") + L("M24 60h26M24 72h26M24 84h16") +
       L("M72 14h34a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H92l-10 9v-9H72a6 6 0 0 1-6-6V20a6 6 0 0 1 6-6z") + L("M78 26h22M78 34h14")),
+    // VALDA, in summary only: four stages round a weekly plan, with a person approving what goes out.
+    system: '<svg viewBox="0 0 640 380">' + L(SYS_LOOP) + mover(SYS_LOOP, "12s") +
+      L("M320 108 V166", "faint") + L("M245 178 L185 142", "faint") + L("M395 178 L455 142", "faint") +
+      L("M395 202 L455 258", "faint") + L("M245 202 L185 258", "faint") +
+      C(320, 64, 42, "node") + R(320, 190, 150, 48) + R(110, 120, 150, 44) + R(530, 120, 150, 44) + R(530, 280, 150, 44) + R(110, 280, 150, 44) +
+      T(320, 68, "A person") + T(372, 30, "approves everything external", "cap", "start") +
+      T(320, 194, "Weekly plan") + T(320, 236, "priorities, reviewed", "cap") +
+      T(110, 124, "Find") + T(110, 88, "new openings", "cap") +
+      T(530, 124, "Reach") + T(530, 88, "the right people", "cap") +
+      T(530, 284, "Keep &amp; measure") + T(530, 330, "what worked", "cap") +
+      T(110, 284, "Create") + T(110, 330, "content and campaigns", "cap") + "</svg>",
     // The AOF oval, drawn in, with a dot travelling round it.
     mark: '<svg viewBox="0 0 320 400">' + L(OVAL) + L("M30 200 A130 82 0 1 1 290 200 A130 82 0 1 1 30 200", "faint") +
       L("M70 200 A90 54 0 1 1 250 200 A90 54 0 1 1 70 200", "faint") + mover(OVAL, "10s") +
@@ -1195,14 +1261,27 @@ main.fading { opacity: 0; }
   }
   document.querySelectorAll(".flowfield").forEach(flowfield);
 
+  // Project cards, built from every project page (a section with data-project), newest first in page order.
+  var projects = Array.prototype.slice.call(document.querySelectorAll("[data-project]"));
+  document.querySelectorAll("[data-projects]").forEach(function (box) {
+    var lim = parseInt(box.getAttribute("data-limit") || "0", 10) || projects.length;
+    box.innerHTML = projects.slice(0, lim).map(function (p) {
+      var g = function (k) { return p.getAttribute("data-" + k) || ""; };
+      return '<a class="card" href="#' + g("view") + '">' +
+        '<div class="card-img"><img src="' + g("img") + '" alt="' + g("alt") + '" loading="lazy"></div>' +
+        '<div class="card-txt"><span class="tags">' + g("tags") + '</span><h3 class="h3">' + g("title") + "</h3>" +
+        '<p class="small">' + g("summary") + '</p><span class="more">View project</span></div></a>';
+    }).join("");
+  });
+
   var io = null;
   if (!still) {
     // Only the big page titles rise word by word; everything else simply fades up.
     document.querySelectorAll("main .display").forEach(function (el) { el.classList.add("words"); words(el, "split"); });
-    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption")
+    document.querySelectorAll("main .eyebrow, main .h2:not(.tile .h2), .phero .tags, main .intro, main .title-row .btn, .tile + .soon, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
       .forEach(function (el) { el.classList.add("rv"); });
     // Staggered groups: siblings come in one after another.
-    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid").forEach(function (g) {
+    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects").forEach(function (g) {
       Array.prototype.slice.call(g.children).forEach(function (c, i) { if (c.classList.contains("peek")) return; c.classList.add("rv"); c.style.setProperty("--d", (i * 110) + "ms"); });
     });
     document.querySelectorAll(".split .pic").forEach(function (el) { el.classList.add("unveil"); });
@@ -1297,7 +1376,8 @@ main.fading { opacity: 0; }
 
   function show(hash) {
     var id = (hash || "").replace("#", "");
-    var name = id.split("-")[0];
+    // A project page is a view of its own (work-valda); other dashed ids are sections inside a view.
+    var name = names.indexOf(id) !== -1 ? id : id.split("-")[0];
     if (names.indexOf(name) === -1) { name = "home"; id = ""; }
     if (name !== current) {
       if (current === null || still) swap(name, id);
@@ -1309,7 +1389,7 @@ main.fading { opacity: 0; }
       }
     }
     document.querySelectorAll(".nav a").forEach(function (a) {
-      if (a.getAttribute("href") === "#" + name) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+      if (a.getAttribute("href") === "#" + name.split("-")[0]) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
     drawer.hidden = true;
     document.getElementById("menuBtn").setAttribute("aria-expanded", "false");
