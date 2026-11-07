@@ -477,6 +477,7 @@ main.fading { opacity: 0; }
 .q { border: 0; margin: 0; padding: 0 0 26px; min-width: 0; }
 .q + .q { padding-top: 24px; box-shadow: inset 0 1px 0 #DDD7CE; }
 .q legend { float: left; width: 100%; padding: 0; margin-bottom: 16px; font-family: var(--serif); font-size: 21px; display: flex; gap: 14px; align-items: baseline; }
+.qhint { display: block; font-family: var(--sans); font-size: 13px; color: var(--soft); margin-top: 4px; }
 .qn { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--soft); flex: none; }
 .chips { clear: both; display: flex; flex-wrap: wrap; gap: 10px; }
 .q > .field, .q > .two { clear: both; }
@@ -1019,13 +1020,17 @@ main.fading { opacity: 0; }
             </div>
           </fieldset>
           <fieldset class="q">
-            <legend><span class="qn">03</span>Where does most of your week go?</legend>
+            <legend><span class="qn">03</span><span>Where does most of your week go? <span class="qhint">Choose any that apply.</span></span></legend>
             <div class="chips">
-              <label class="chip"><input type="radio" name="week" value="Enquiries and clients"><span>Enquiries &amp; clients</span></label>
-              <label class="chip"><input type="radio" name="week" value="Proposals and fees"><span>Proposals &amp; fees</span></label>
-              <label class="chip"><input type="radio" name="week" value="Suppliers and orders"><span>Suppliers &amp; orders</span></label>
-              <label class="chip"><input type="radio" name="week" value="Admin and invoices"><span>Admin &amp; invoices</span></label>
-              <label class="chip"><input type="radio" name="week" value="Marketing"><span>Marketing</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="New enquiries"><span>New enquiries</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Client updates and emails"><span>Client updates &amp; emails</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Proposals and fees"><span>Proposals &amp; fees</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Sourcing and specifications"><span>Sourcing &amp; specifications</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Suppliers and orders"><span>Suppliers &amp; orders</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Scheduling and site visits"><span>Scheduling &amp; site visits</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Admin and invoices"><span>Admin &amp; invoices</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Marketing and social media"><span>Marketing &amp; social media</span></label>
+              <label class="chip"><input type="checkbox" name="week" value="Something else"><span>Something else</span></label>
             </div>
           </fieldset>
           <fieldset class="q">
@@ -1556,7 +1561,9 @@ main.fading { opacity: 0; }
   var rform = document.getElementById("rform");
   var rErr = document.getElementById("rError");
   var rBtn = document.getElementById("rSubmit");
-  function picked(name) { var c = rform.querySelector('input[name="' + name + '"]:checked'); return c ? c.value : ""; }
+  function picked(name) {
+    return Array.prototype.map.call(rform.querySelectorAll('input[name="' + name + '"]:checked'), function (c) { return c.value; }).join(", ");
+  }
   rform.addEventListener("change", function (e) {
     var q = e.target.closest(".q"); if (q) q.classList.remove("missing");
   });
