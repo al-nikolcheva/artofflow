@@ -324,6 +324,27 @@ b, strong { font-weight: 500; color: var(--ink); }
 .js .unveil.in { clip-path: inset(0 0 0 0 round 4px); }
 .soon { font-size: 14px; }
 
+/* services: a list that opens one row at a time, the picture beside it changes */
+.acc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.acc-pic { position: relative; aspect-ratio: 4 / 5; border-radius: 4px; overflow: hidden; background: var(--beige); }
+.acc-pic .img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity .8s ease, transform 2s var(--ease); }
+.acc-pic .img.on { opacity: 1; }
+.js .acc-pic .img { transition: opacity .8s ease, transform 2s var(--ease); }
+.acc-list { border-top: 1px solid var(--ink); }
+.acc-item { border-bottom: 1px solid var(--line); }
+.acc-item button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-family: var(--serif); font-size: clamp(24px, 2.3vw, 32px); line-height: 1.15; color: var(--soft); transition: color .4s; }
+.acc-item button:hover, .acc-item.open button { color: var(--ink); }
+.acc-item button:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+.acc-item i { position: relative; width: 16px; height: 16px; flex: none; }
+.acc-item i::before, .acc-item i::after { content: ""; position: absolute; left: 0; top: 50%; width: 16px; height: 1px; background: currentColor; transition: transform .5s var(--ease); }
+.acc-item i::after { transform: rotate(90deg); }
+.acc-item.open i::before { transform: rotate(45deg); }
+.acc-item.open i::after { transform: rotate(135deg); }
+.acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
+.acc-item.open .acc-body { grid-template-rows: 1fr; }
+.acc-body > div { overflow: hidden; }
+.acc-body p { margin: 0 0 14px; max-width: 32em; font-size: 15px; }
+.acc-body .more { display: inline-block; margin-bottom: 26px; color: var(--ink); }
 
 /* steps: four quiet columns */
 .step { border-top-color: var(--line); padding-top: 20px; gap: 10px; }
@@ -478,29 +499,20 @@ main.fading { opacity: 0; }
 .flowfield canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero .film.flowfield, .phero .film.flowfield { animation: none; }
 .hero::after, .phero::after { background: linear-gradient(180deg, rgba(14,13,12,.35) 0%, rgba(14,13,12,0) 30%, rgba(14,13,12,0) 55%, rgba(14,13,12,.6) 100%); }
-/* services on home: five cards, each with its line drawing */
-.scards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); }
-.scard { display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 22px; background: var(--beige); border-radius: 4px; color: var(--ink); text-decoration: none; transition: background .4s, transform .5s var(--ease); }
-.scard:hover { background: #EDE7DD; transform: translateY(-4px); }
-.scard:focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
-.scard-pic { aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 18%; margin-bottom: 8px; background: var(--ground); border-radius: 3px; }
-.scard-pic .art { width: 100%; --sw: 1.1; }
-.scard .qn { font-size: 11px; }
-.scard h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 1.8vw, 27px); line-height: 1.15; }
-.scard p { margin: 0; font-size: 14.5px; line-height: 1.55; color: #4A443F; }
-.scard-more { margin-top: auto; padding-top: 10px; font-size: 13px; color: var(--soft); transition: color .3s; }
-.scard-more::after { content: " \2192"; }
-.scard:hover .scard-more { color: var(--ink); }
-@media (max-width: 1100px) { .scards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .scards .scard:last-child { grid-column: 1 / -1; } .scards .scard:last-child .scard-pic { aspect-ratio: 2 / 1; padding: 6% 30%; } }
-@media (max-width: 560px) {
-  .scards { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .scard { display: grid; grid-template-columns: 84px minmax(0, 1fr); column-gap: 16px; row-gap: 4px; align-content: start; padding: 12px 14px 14px 12px; }
-  .scard-pic, .scards .scard:last-child .scard-pic { grid-row: 1 / span 4; aspect-ratio: 1 / 1; padding: 16%; margin: 0; align-self: start; }
-  .scard .qn, .scard h3, .scard p, .scard-more { grid-column: 2; }
-  .scard h3 { font-size: 22px; }
-  .scard p { font-size: 14px; }
-  .scard-more { padding-top: 4px; }
-}
+.acc-pic { background: var(--black); color: #EEEBE6; }
+.acc-pic .art { color: #EEEBE6; }
+.acc-pic .art .ln.node { fill: var(--black); }
+/* the picture panel matches the height of the list beside it, not a tall fixed shape */
+.acc { align-items: stretch; }
+.acc-pic { aspect-ratio: auto; min-height: 440px; }
+.acc-pic .img.art { display: grid; place-items: center; padding: 12% 14% 22%; --sw: .8; }
+.acc-pic .img.art svg { width: 100%; max-width: 380px; }
+.acc-cap { position: absolute; left: clamp(22px, 3vw, 36px); right: clamp(22px, 3vw, 36px); bottom: clamp(20px, 3vw, 32px); display: flex; align-items: baseline; gap: 14px; padding-top: 16px; border-top: 1px solid rgba(238,235,230,.18); }
+.acc-cap .qn { font-size: 11px; }
+.acc-cap b { font-family: var(--serif); font-weight: 400; font-size: 22px; color: #EEEBE6; }
+.acc-cap .qn, .acc-cap span:last-child { color: #A69C90; }
+.acc-cap span:last-child { margin-left: auto; font-size: 13px; }
+.js .acc-pic .img.art .ln { transition-delay: 150ms; transition-duration: 1.8s; }
 .mark-pic { background: var(--beige) !important; display: grid; place-items: center; padding: 10%; --sw: 1.3; }
 .mark-pic svg { max-width: 360px; }
 .art text.mk { font-family: "Montserrat", sans-serif; font-weight: 300; font-size: 30px; letter-spacing: .32em; text-transform: none; fill: var(--ink); }
@@ -510,6 +522,10 @@ main.fading { opacity: 0; }
 
 @media (max-width: 1020px) {
   .intro-row { grid-template-columns: minmax(0, 1fr); }
+  .acc { grid-template-columns: minmax(0, 1fr); }
+  .acc-pic { aspect-ratio: 16 / 10; min-height: 0; }
+  .acc-pic .img.art { padding: 8% 22%; }
+  .acc-cap { display: none; }
   footer .fgrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   footer .fcta { grid-column: 1 / -1; }
 }
@@ -596,37 +612,30 @@ main.fading { opacity: 0; }
         <div><span class="eyebrow">What we build</span><h2 class="h2">Five places we help</h2></div>
         <a class="btn" href="#build">See it in detail</a>
       </div>
-      <div class="scards">
-        <a class="scard" href="#build-clients">
-          <div class="scard-pic"><div class="art" data-art="clients" aria-hidden="true"></div></div>
-          <span class="qn">01</span><h3>Clients</h3>
-          <p>Every enquiry answered within minutes, in your voice. Clients thanked and brought back.</p>
-          <span class="scard-more">More on clients</span>
-        </a>
-        <a class="scard" href="#build-sales">
-          <div class="scard-pic"><div class="art" data-art="sales" aria-hidden="true"></div></div>
-          <span class="qn">02</span><h3>Sales</h3>
-          <p>Quotes drafted from your own prices and past jobs. Every open lead followed up.</p>
-          <span class="scard-more">More on sales</span>
-        </a>
-        <a class="scard" href="#build-marketing">
-          <div class="scard-pic"><div class="art" data-art="marketing" aria-hidden="true"></div></div>
-          <span class="qn">03</span><h3>Marketing</h3>
-          <p>A steady rhythm of posts and newsletters in your voice. You approve, it goes out.</p>
-          <span class="scard-more">More on marketing</span>
-        </a>
-        <a class="scard" href="#build-operations">
-          <div class="scard-pic"><div class="art" data-art="operations" aria-hidden="true"></div></div>
-          <span class="qn">04</span><h3>Operations</h3>
-          <p>Bookings, invoices, orders and reports connected, so information moves on its own.</p>
-          <span class="scard-more">More on operations</span>
-        </a>
-        <a class="scard" href="#build-assistant">
-          <div class="scard-pic"><div class="art" data-art="assistant" aria-hidden="true"></div></div>
-          <span class="qn">05</span><h3>Team assistant</h3>
-          <p>A private assistant that knows your documents and answers your team&rsquo;s questions.</p>
-          <span class="scard-more">More on the assistant</span>
-        </a>
+      <div class="acc" id="acc">
+        <div class="acc-pic unveil" aria-hidden="true"></div>
+        <div class="acc-list">
+          <div class="acc-item open" data-art="clients">
+            <button type="button" aria-expanded="true">Clients<i></i></button>
+            <div class="acc-body"><div><p>When someone gets in touch, they hear back within minutes, at any hour, in your tone of voice. Afterwards, clients are thanked, asked for feedback and reminded when it is time to come back.</p><a class="more" href="#build-clients">More on clients</a></div></div>
+          </div>
+          <div class="acc-item" data-art="sales">
+            <button type="button" aria-expanded="false">Sales<i></i></button>
+            <div class="acc-body"><div><p>Quotes and proposals are drafted from your own prices and past jobs, ready for your team to check and send. Every open lead gets a follow-up at the right moment.</p><a class="more" href="#build-sales">More on sales</a></div></div>
+          </div>
+          <div class="acc-item" data-art="marketing">
+            <button type="button" aria-expanded="false">Marketing<i></i></button>
+            <div class="acc-body"><div><p>A steady rhythm of posts, newsletters and campaigns, written in your voice from what is actually happening in your business. You approve, and it goes out.</p><a class="more" href="#build-marketing">More on marketing</a></div></div>
+          </div>
+          <div class="acc-item" data-art="operations">
+            <button type="button" aria-expanded="false">Operations<i></i></button>
+            <div class="acc-body"><div><p>Bookings, invoices, order updates, reports and handovers, connected so information moves on its own. People step in only where judgement is needed.</p><a class="more" href="#build-operations">More on operations</a></div></div>
+          </div>
+          <div class="acc-item" data-art="assistant">
+            <button type="button" aria-expanded="false">Team assistant<i></i></button>
+            <div class="acc-body"><div><p>A private assistant that has read your documents, products and processes. Anyone on the team can ask it a question and get an answer from your own information.</p><a class="more" href="#build-assistant">More on the assistant</a></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1361,10 +1370,10 @@ main.fading { opacity: 0; }
   if (!still) {
     // Only the big page titles rise word by word; everything else simply fades up.
     document.querySelectorAll("main .display").forEach(function (el) { el.classList.add("words"); words(el, "split"); });
-    document.querySelectorAll("main .eyebrow, main .h2, .phero .tags, main .intro, main .title-row .btn, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
+    document.querySelectorAll("main .eyebrow, main .h2, .phero .tags, main .intro, main .title-row .btn, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
       .forEach(function (el) { el.classList.add("rv"); });
     // Staggered groups: siblings come in one after another.
-    document.querySelectorAll(".steps, .facts, .values, .contact aside, .scards, footer .fgrid, .projects").forEach(function (g) {
+    document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects").forEach(function (g) {
       Array.prototype.slice.call(g.children).forEach(function (c, i) { c.classList.add("rv"); c.style.setProperty("--d", (i * 110) + "ms"); });
     });
     document.querySelectorAll(".split .pic").forEach(function (el) { el.classList.add("unveil"); });
@@ -1447,6 +1456,31 @@ main.fading { opacity: 0; }
   }
 
   // Services: one row open at a time; the panel beside the list draws that service's picture.
+  var acc = document.getElementById("acc");
+  if (acc) {
+    var pic = acc.querySelector(".acc-pic"), items = Array.prototype.slice.call(acc.querySelectorAll(".acc-item"));
+    var layers = items.map(function (it, k) {
+      // Each picture carries a small caption: its number, the service name, and "1 of 5".
+      var name = it.querySelector("button").textContent.trim();
+      var d = document.createElement("div"); d.className = "img art";
+      d.innerHTML = (ART[it.getAttribute("data-art")] || "") +
+        '<span class="acc-cap"><span class="qn">0' + (k + 1) + '</span><b>' + name + '</b><span>' + (k + 1) + ' of ' + items.length + '</span></span>';
+      pic.appendChild(d); return d;
+    });
+    function open(k) {
+      items.forEach(function (it, j) {
+        it.classList.toggle("open", j === k);
+        it.querySelector("button").setAttribute("aria-expanded", String(j === k));
+        layers[j].classList.toggle("on", j === k);
+        // Redraw the opened picture from nothing each time.
+        layers[j].classList.remove("in");
+        if (j === k) { void layers[j].offsetWidth; layers[j].classList.add("in"); }
+      });
+    }
+    items.forEach(function (it, k) { it.querySelector("button").addEventListener("click", function () { open(k); }); });
+    open(0);
+  }
+
   function swap(name, id) {
     views.forEach(function (v) { v.hidden = v.getAttribute("data-view") !== name; });
     current = name;
