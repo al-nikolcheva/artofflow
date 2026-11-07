@@ -876,7 +876,7 @@ main.fading { opacity: 0; }
         </div>
       </div>
       <p class="note">A summary only. The full design of both systems stays with VALDA. We do not publish client figures, and we are happy to talk this project through on a call.</p>
-      <div class="proj-nav"><a class="btn" href="#work">All projects</a><a class="btn" href="#contact" data-book>Book a call</a></div>
+      <div class="proj-nav"><a class="btn" href="#work">All projects</a><a class="btn" href="#review">Book a call</a></div>
     </div>
   </div>
 </section>
@@ -938,10 +938,9 @@ main.fading { opacity: 0; }
       <aside>
         <div class="book" id="book">
           <span class="eyebrow">Book a call</span>
-          <h2 class="h3">Thirty minutes, by video</h2>
-          <p class="small">Choose a time that suits you. No preparation needed.</p>
-          <a class="btn lg" id="calendly" href="#contact">Choose a time</a>
-          <p class="small it" id="calendlyNote" style="font-size:15px">Online booking opens soon. Until then, send a note and we will suggest times.</p>
+          <h2 class="h3">A free AI review, by video</h2>
+          <p class="small">Answer a few short questions. We read every application ourselves and email you to arrange a time.</p>
+          <a class="btn lg" href="#review">Apply for a review</a>
         </div>
         <div class="block"><span class="eyebrow">Email</span><p><span class="copyable">hello@artofflow.studio</span></p></div>
         <div class="block"><span class="eyebrow">Instagram</span><p><a href="https://www.instagram.com/artofflow.studio/" target="_blank" rel="noopener">@artofflow.studio</a></p></div>
@@ -1055,9 +1054,8 @@ main.fading { opacity: 0; }
         </form>
         <div class="sent" id="rFit" hidden tabindex="-1">
           <span class="eyebrow">Application received</span>
-          <h2 class="h3">You&rsquo;re a good fit.</h2>
-          <p>Thank you. Choose a time for your free review below. It is a 30-minute video call, and there is nothing to prepare.</p>
-          <div class="row"><a class="btn fill lg" id="reviewBook" href="#review" target="_blank" rel="noopener">Book your review</a></div>
+          <h2 class="h3">Thank you. We&rsquo;ll be in touch.</h2>
+          <p>We read every application ourselves. If a review looks right for your studio, we will email you to arrange a time for the 30-minute call.</p>
         </div>
         <div class="sent" id="rNoFit" hidden tabindex="-1">
           <span class="eyebrow">Application received</span>
@@ -1099,7 +1097,7 @@ main.fading { opacity: 0; }
       <p style="margin-top:1em">We do not sell your personal data. We do not send marketing emails unless you have asked us to.</p>
 
       <h2>Who we share it with</h2>
-      <p>We use trusted providers to run the studio: Vercel for website hosting, Calendly for booking calls, Web3Forms for passing on the answers you send through the review application, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
+      <p>We use trusted providers to run the studio: Vercel for website hosting, Calendly for scheduling calls we arrange with you, Web3Forms for passing on the answers you send through the review application, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
 
       <h2>How long we keep it</h2>
       <p>Enquiries that do not lead to work: [12 months]. Client records: [6 years after the end of the engagement, for accounting purposes]. [Confirm.]</p>
@@ -1108,7 +1106,7 @@ main.fading { opacity: 0; }
       <p>You have the right to access, correct or delete your personal data, to object to or restrict how we use it, and to data portability. To use any of these rights, email hello@artofflow.studio. If you are unhappy with how we handle your data, you can complain to the Information Commissioner&rsquo;s Office (ico.org.uk).</p>
 
       <h2>Cookie policy</h2>
-      <p>Cookies are small files stored on your device. This site does not set any cookies of its own and uses no analytics. It loads its typefaces from Google Fonts, which receives your IP address to deliver them. If you book a call, Calendly may set its own cookies on its booking page.</p>
+      <p>Cookies are small files stored on your device. This site does not set any cookies of its own and uses no analytics. It loads its typefaces from Google Fonts, which receives your IP address to deliver them. If we send you a Calendly link to arrange a call, Calendly may set its own cookies on its booking page.</p>
       <div class="tablewrap"><table>
         <tr><th>Cookie</th><th>Provider</th><th>Purpose</th><th>Duration</th></tr>
         <tr><td>None</td><td>Art of Flow</td><td>This site sets no cookies of its own</td><td>Not applicable</td></tr>
@@ -1146,10 +1144,7 @@ main.fading { opacity: 0; }
 
 <script>
 (function () {
-  // Paste the Calendly link here when it exists; every "Book a call" button then opens it.
-  var CALENDLY = "https://calendly.com/al-nikolcheva/30min";
-  // The "Book your review" button shown to good fits on the review page. Swap for a review-only event when there is one.
-  var REVIEW_BOOKING = "https://calendly.com/al-nikolcheva/30min";
+  // No public booking link: every "Book a call" goes to the review application, and calls are arranged by email.
   // Web3Forms access key for hello@artofflow.studio (public by design). Empty = answers go via the visitor's email app.
   var WEB3FORMS_KEY = "";
 
@@ -1525,16 +1520,6 @@ main.fading { opacity: 0; }
   document.getElementById("menuBtn").addEventListener("click", function () { drawer.hidden = false; this.setAttribute("aria-expanded", "true"); });
   document.getElementById("closeBtn").addEventListener("click", function () { drawer.hidden = true; });
 
-  if (CALENDLY) {
-    document.querySelectorAll("[data-book], #calendly").forEach(function (a) {
-      a.href = CALENDLY; a.target = "_blank"; a.rel = "noopener";
-    });
-    document.getElementById("calendlyNote").hidden = true;
-  } else {
-    document.getElementById("calendly").addEventListener("click", function (e) {
-      e.preventDefault(); document.getElementById("f-name").focus();
-    });
-  }
 
   // Contact form. It opens the visitor's email app with the note written in; the copy box is the fallback.
   var form = document.getElementById("form");
@@ -1571,7 +1556,6 @@ main.fading { opacity: 0; }
   var rform = document.getElementById("rform");
   var rErr = document.getElementById("rError");
   var rBtn = document.getElementById("rSubmit");
-  document.getElementById("reviewBook").href = REVIEW_BOOKING;
   function picked(name) { var c = rform.querySelector('input[name="' + name + '"]:checked'); return c ? c.value : ""; }
   rform.addEventListener("change", function (e) {
     var q = e.target.closest(".q"); if (q) q.classList.remove("missing");
