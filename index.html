@@ -468,6 +468,30 @@ main.fading { opacity: 0; }
   .projects:has(> .card:only-child) .card { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* free AI review application */
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.lead-in { font-family: var(--serif); font-size: clamp(21px, 2vw, 26px); line-height: 1.4; margin: 0 0 28px; }
+.gets { list-style: none; padding: 0; margin: 0 0 28px; border-top: 1px solid var(--line); }
+.gets li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+#rform { gap: 0; }
+.q { border: 0; margin: 0; padding: 0 0 26px; min-width: 0; }
+.q + .q { padding-top: 24px; box-shadow: inset 0 1px 0 #DDD7CE; }
+.q legend { float: left; width: 100%; padding: 0; margin-bottom: 16px; font-family: var(--serif); font-size: 21px; display: flex; gap: 14px; align-items: baseline; }
+.qn { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--soft); flex: none; }
+.chips { clear: both; display: flex; flex-wrap: wrap; gap: 10px; }
+.q > .field, .q > .two { clear: both; }
+.chip { position: relative; cursor: pointer; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { display: inline-block; padding: 10px 18px; border: 1px solid #C9C2B7; border-radius: 999px; font-size: 15px; line-height: 1.2; background: var(--ground); transition: background .2s, color .2s, border-color .2s; }
+.chip:hover span { border-color: var(--ink); }
+.chip input:checked + span { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+.chip input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 3px; }
+.q.missing legend { color: #9A3B23; }
+#rform .check { margin-top: 8px; }
+#rform #rError { margin: 16px 0 0; }
+#rform > div:last-child { margin-top: 24px; }
+#rSubmit[disabled] { opacity: .55; pointer-events: none; }
+
 /* motion in place of photos */
 .flowfield { background: var(--black) !important; }
 .flowfield canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
@@ -512,7 +536,7 @@ main.fading { opacity: 0; }
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn" href="#contact" data-book>Book a call</a>
+    <a class="btn" href="#review">Book a call</a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu</button>
   </div>
 </header>
@@ -533,7 +557,7 @@ main.fading { opacity: 0; }
   <div class="connect">
     <span class="eyebrow">Connect</span>
     <p>London<br>United Kingdom<br>hello@artofflow.studio</p>
-    <a class="btn lg" href="#contact" data-book>Book a call</a>
+    <a class="btn lg" href="#review">Book a call</a>
   </div>
 </div>
 
@@ -956,6 +980,95 @@ main.fading { opacity: 0; }
   </div>
 </section>
 
+<!-- ============ FREE AI REVIEW (artofflow.studio/review) ============ -->
+<section data-view="review" hidden>
+  <div class="phero" style="min-height:min(62svh,560px)">
+    <div class="film flowfield" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow">Free AI review</span>
+      <h1 class="display">Apply for a free AI review.</h1>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap contact">
+      <aside>
+        <p class="lead-in">A 30-minute video call where we look at how your studio runs and show you two or three places AI could save your team hours each week. Afterwards, you get a one-page summary.</p>
+        <ol class="gets">
+          <li><span class="qn">01</span><span>30 minutes, by video</span></li>
+          <li><span class="qn">02</span><span>Two or three places AI could save hours</span></li>
+          <li><span class="qn">03</span><span>A one-page summary to keep</span></li>
+        </ol>
+        <p class="small it" style="font-size:15px">We run a limited number of reviews each month, so we ask a few questions first. It takes about a minute.</p>
+      </aside>
+      <div>
+        <form id="rform" novalidate>
+          <fieldset class="q">
+            <legend><span class="qn">01</span>What kind of business are you?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="business" value="Interior design studio"><span>Interior design studio</span></label>
+              <label class="chip"><input type="radio" name="business" value="Architecture or design"><span>Architecture or design</span></label>
+              <label class="chip"><input type="radio" name="business" value="Other business"><span>Other business</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="qn">02</span>How big is your team?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="team" value="Just me"><span>Just me</span></label>
+              <label class="chip"><input type="radio" name="team" value="2-5"><span>2&ndash;5</span></label>
+              <label class="chip"><input type="radio" name="team" value="6-20"><span>6&ndash;20</span></label>
+              <label class="chip"><input type="radio" name="team" value="20+"><span>20+</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="qn">03</span>Where does most of your week go?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="week" value="Enquiries and clients"><span>Enquiries &amp; clients</span></label>
+              <label class="chip"><input type="radio" name="week" value="Proposals and fees"><span>Proposals &amp; fees</span></label>
+              <label class="chip"><input type="radio" name="week" value="Suppliers and orders"><span>Suppliers &amp; orders</span></label>
+              <label class="chip"><input type="radio" name="week" value="Admin and invoices"><span>Admin &amp; invoices</span></label>
+              <label class="chip"><input type="radio" name="week" value="Marketing"><span>Marketing</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="qn">04</span>When would you like to fix it?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="timing" value="This month"><span>This month</span></label>
+              <label class="chip"><input type="radio" name="timing" value="In the next 3 months"><span>In the next 3 months</span></label>
+              <label class="chip"><input type="radio" name="timing" value="Just exploring"><span>Just exploring</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="qn">05</span>Your website or Instagram</legend>
+            <div class="field"><label class="sr" for="r-site">Website or Instagram</label><input id="r-site" name="site" placeholder="yourstudio.com or @yourstudio" autocomplete="url"></div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="qn">06</span>Who should we reply to?</legend>
+            <div class="two">
+              <div class="field"><label for="r-name">Your name</label><input id="r-name" name="name" autocomplete="name" required></div>
+              <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+            </div>
+          </fieldset>
+          <input type="checkbox" name="botcheck" class="sr" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="check" for="r-consent"><input type="checkbox" id="r-consent" required><span>I agree to Art of Flow using these answers to reply to me, as set out in the <a href="#privacy">privacy notice</a>.</span></label>
+          <p class="note" id="rError" role="alert" hidden></p>
+          <div><button class="btn fill lg" type="submit" id="rSubmit">Send my application</button></div>
+        </form>
+        <div class="sent" id="rFit" hidden tabindex="-1">
+          <span class="eyebrow">Application received</span>
+          <h2 class="h3">You&rsquo;re a good fit.</h2>
+          <p>Thank you. Choose a time for your free review below. It is a 30-minute video call, and there is nothing to prepare.</p>
+          <div class="row"><a class="btn fill lg" id="reviewBook" href="#review" target="_blank" rel="noopener">Book your review</a></div>
+        </div>
+        <div class="sent" id="rNoFit" hidden tabindex="-1">
+          <span class="eyebrow">Application received</span>
+          <h2 class="h3">Thank you.</h2>
+          <p>Reviews are limited and we focus on design studios right now, but we read every answer and will be in touch if we can help.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PRIVACY & COOKIES ============ -->
 <section data-view="privacy" hidden>
   <div class="sec" style="padding-top:calc(78px + clamp(64px, 8vw, 110px))">
@@ -986,7 +1099,7 @@ main.fading { opacity: 0; }
       <p style="margin-top:1em">We do not sell your personal data. We do not send marketing emails unless you have asked us to.</p>
 
       <h2>Who we share it with</h2>
-      <p>We use trusted providers to run the studio, : Vercel for website hosting, Calendly for booking calls, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
+      <p>We use trusted providers to run the studio: Vercel for website hosting, Calendly for booking calls, Web3Forms for passing on the answers you send through the review application, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
 
       <h2>How long we keep it</h2>
       <p>Enquiries that do not lead to work: [12 months]. Client records: [6 years after the end of the engagement, for accounting purposes]. [Confirm.]</p>
@@ -1015,7 +1128,7 @@ main.fading { opacity: 0; }
     <div class="fgrid">
       <div class="fcta">
         <p class="fline">See where AI could help your business flow.<br>Get in touch today.</p>
-        <a class="btn" href="#contact" data-book>Book a call</a>
+        <a class="btn" href="#review">Book a call</a>
       </div>
       <nav class="fnav" aria-label="Footer">
         <a href="#home">Home</a><a href="#build">What we build</a><a href="#how">How we work</a><a href="#work">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
@@ -1035,6 +1148,10 @@ main.fading { opacity: 0; }
 (function () {
   // Paste the Calendly link here when it exists; every "Book a call" button then opens it.
   var CALENDLY = "https://calendly.com/al-nikolcheva/30min";
+  // The "Book your review" button shown to good fits on the review page. Swap for a review-only event when there is one.
+  var REVIEW_BOOKING = "https://calendly.com/al-nikolcheva/30min";
+  // Web3Forms access key for hello@artofflow.studio (public by design). Empty = answers go via the visitor's email app.
+  var WEB3FORMS_KEY = "";
 
   var views = Array.prototype.slice.call(document.querySelectorAll("[data-view]"));
   var names = views.map(function (v) { return v.getAttribute("data-view"); });
@@ -1448,6 +1565,72 @@ main.fading { opacity: 0; }
       navigator.clipboard.writeText(text).then(function () { btn.textContent = "Copied"; }, selectIt);
     } catch (e) { selectIt(); }
   });
+
+  // Free AI review application. Every answer is emailed to hello@artofflow.studio through Web3Forms,
+  // then good fits get the booking link and everyone else gets a polite thank-you.
+  var rform = document.getElementById("rform");
+  var rErr = document.getElementById("rError");
+  var rBtn = document.getElementById("rSubmit");
+  document.getElementById("reviewBook").href = REVIEW_BOOKING;
+  function picked(name) { var c = rform.querySelector('input[name="' + name + '"]:checked'); return c ? c.value : ""; }
+  rform.addEventListener("change", function (e) {
+    var q = e.target.closest(".q"); if (q) q.classList.remove("missing");
+  });
+  rform.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var a = { business: picked("business"), team: picked("team"), week: picked("week"), timing: picked("timing"),
+      site: rform.elements.site.value.trim(), name: rform.elements.name.value.trim(), email: rform.elements.email.value.trim() };
+    var missing = [];
+    ["business", "team", "week", "timing"].forEach(function (k) {
+      var q = rform.querySelector('input[name="' + k + '"]').closest(".q");
+      q.classList.toggle("missing", !a[k]); if (!a[k]) missing.push(q);
+    });
+    function fail(msg, el) { rErr.textContent = msg; rErr.hidden = false; if (el) el.scrollIntoView({ block: "center" }); }
+    if (missing.length) return fail("Please answer each question with a choice.", missing[0]);
+    if (!a.name || !a.email) return fail("Please add your name and email so we can reply.");
+    if (!rform.elements.email.validity.valid) return fail("That email address looks incomplete. Please check it.");
+    if (!document.getElementById("r-consent").checked) return fail("Please tick the box so we can reply to you.");
+    if (rform.elements.botcheck.checked) return;
+    rErr.hidden = true;
+
+    var fit = (a.business === "Interior design studio" || a.business === "Architecture or design") &&
+      a.team !== "Just me" && a.timing !== "Just exploring";
+    var summary = "Outcome: " + (fit ? "GOOD FIT (shown the booking link)" : "Not a fit right now (shown the thank-you)") +
+      "\n\nName: " + a.name + "\nEmail: " + a.email + "\nWebsite or Instagram: " + (a.site || "-") +
+      "\n\nBusiness: " + a.business + "\nTeam size: " + a.team + "\nMost of the week goes on: " + a.week + "\nWants to fix it: " + a.timing;
+    var subject = "Review application: " + a.name + (fit ? " (good fit)" : " (not a fit yet)");
+
+    function done() {
+      rform.hidden = true;
+      var box = document.getElementById(fit ? "rFit" : "rNoFit");
+      box.hidden = false; box.focus({ preventScroll: true });
+      box.scrollIntoView({ block: "center" });
+    }
+    if (!WEB3FORMS_KEY) {
+      // No form key yet: fall back to the visitor's email app so the answers still reach us.
+      window.location.href = "mailto:hello@artofflow.studio?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(summary);
+      return done();
+    }
+    rBtn.disabled = true; rBtn.textContent = "Sending";
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY, subject: subject, from_name: "Art of Flow website", replyto: a.email,
+        outcome: fit ? "Good fit" : "Not a fit right now", name: a.name, email: a.email, website_or_instagram: a.site || "-",
+        business: a.business, team_size: a.team, most_of_the_week: a.week, timing: a.timing
+      })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.success) throw new Error("not sent");
+      done();
+    }).catch(function () {
+      rBtn.disabled = false; rBtn.textContent = "Send my application";
+      fail("Sorry, your answers did not send. Please try again, or email them to hello@artofflow.studio.");
+    });
+  });
+
+  // artofflow.studio/review (the link in our Instagram replies) opens the review page.
+  if (/^\/review\/?$/.test(location.pathname)) history.replaceState(null, "", "/#review");
 
   show(location.hash);
 })();
