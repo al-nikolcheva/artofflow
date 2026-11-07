@@ -174,6 +174,7 @@ img { display: block; max-width: 100%; }
 .contact aside p { margin: 0; }
 .book { background: var(--black); color: var(--paper); padding: 34px 30px; border-radius: 6px; display: grid; gap: 16px; justify-items: start; }
 .book p { margin: 0; }
+.book .small { color: #C9BFB2; }
 form { display: grid; gap: 24px; background: var(--beige); padding: clamp(24px, 4vw, 48px); border-radius: 6px; }
 .field { display: grid; gap: 8px; }
 .field label { font-family: var(--sans); font-size: 10.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
@@ -245,7 +246,7 @@ footer .eyebrow, footer .col .eyebrow { color: #A69C90; font-size: 10.5px; }
 
 
 @media (max-width: 1020px) {
-  .nav, .top .btn { display: none; }
+  .nav, .top .btn, .btn-slot { display: none; }
   .menu-btn { display: block; }
   .top .wrap { grid-template-columns: 1fr auto; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -491,7 +492,7 @@ main.fading { opacity: 0; }
 #rform .check { margin-top: 8px; }
 #rform #rError { margin: 16px 0 0; }
 #rform > div:last-child { margin-top: 24px; }
-#rSubmit[disabled] { opacity: .55; pointer-events: none; }
+#rSubmit[disabled], #fSubmit[disabled] { opacity: .55; pointer-events: none; }
 
 /* motion in place of photos */
 .flowfield { background: var(--black) !important; }
@@ -537,7 +538,7 @@ main.fading { opacity: 0; }
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn" href="#review">Book a call</a>
+    <span class="btn-slot" aria-hidden="true"></span>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu</button>
   </div>
 </header>
@@ -558,7 +559,6 @@ main.fading { opacity: 0; }
   <div class="connect">
     <span class="eyebrow">Connect</span>
     <p>London<br>United Kingdom<br>hello@artofflow.studio</p>
-    <a class="btn lg" href="#review">Book a call</a>
   </div>
 </div>
 
@@ -877,7 +877,7 @@ main.fading { opacity: 0; }
         </div>
       </div>
       <p class="note">A summary only. The full design of both systems stays with VALDA. We do not publish client figures, and we are happy to talk this project through on a call.</p>
-      <div class="proj-nav"><a class="btn" href="#work">All projects</a><a class="btn" href="#review">Book a call</a></div>
+      <div class="proj-nav"><a class="btn" href="#work">All projects</a><a class="btn" href="#contact">Get in touch</a></div>
     </div>
   </div>
 </section>
@@ -938,9 +938,9 @@ main.fading { opacity: 0; }
     <div class="wrap contact">
       <aside>
         <div class="book" id="book">
-          <span class="eyebrow">Book a call</span>
-          <h2 class="h3">A free AI review, by video</h2>
-          <p class="small">Answer a few short questions. We read every application ourselves and email you to arrange a time.</p>
+          <span class="eyebrow">For design studios</span>
+          <h2 class="h3">Apply for a free AI review</h2>
+          <p class="small">A 30-minute video call and a one-page summary. Answer a few short questions and we will email you to arrange a time.</p>
           <a class="btn lg" href="#review">Apply for a review</a>
         </div>
         <div class="block"><span class="eyebrow">Email</span><p><span class="copyable">hello@artofflow.studio</span></p></div>
@@ -962,8 +962,13 @@ main.fading { opacity: 0; }
           <div class="field"><label for="f-msg">A little about your business</label><textarea id="f-msg" name="message" required placeholder="What you do, and the work you would like to hand over."></textarea></div>
           <label class="check" for="f-consent"><input type="checkbox" id="f-consent" required><span>I agree to Art of Flow using these details to reply to me, as set out in the <a href="#privacy">privacy notice</a>.</span></label>
           <p class="note" id="formError" hidden></p>
-          <div><button class="btn fill lg" type="submit">Send enquiry</button></div>
+          <div><button class="btn fill lg" type="submit" id="fSubmit">Send enquiry</button></div>
         </form>
+        <div class="sent" id="sentOk" hidden tabindex="-1">
+          <span class="eyebrow">Thank you</span>
+          <h2 class="h3">Your message is on its way.</h2>
+          <p>We read every enquiry ourselves and will reply by email.</p>
+        </div>
         <div class="sent" id="sent" hidden>
           <span class="eyebrow">Thank you</span>
           <h2 class="h3">Your email is ready to send</h2>
@@ -1102,7 +1107,7 @@ main.fading { opacity: 0; }
       <p style="margin-top:1em">We do not sell your personal data. We do not send marketing emails unless you have asked us to.</p>
 
       <h2>Who we share it with</h2>
-      <p>We use trusted providers to run the studio: Vercel for website hosting, Calendly for scheduling calls we arrange with you, Web3Forms for passing on the answers you send through the review application, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
+      <p>We use trusted providers to run the studio: Vercel for website hosting, Calendly for scheduling calls we arrange with you, Web3Forms for passing on the messages and answers you send through our forms, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
 
       <h2>How long we keep it</h2>
       <p>Enquiries that do not lead to work: [12 months]. Client records: [6 years after the end of the engagement, for accounting purposes]. [Confirm.]</p>
@@ -1131,7 +1136,7 @@ main.fading { opacity: 0; }
     <div class="fgrid">
       <div class="fcta">
         <p class="fline">See where AI could help your business flow.<br>Get in touch today.</p>
-        <a class="btn" href="#review">Book a call</a>
+        <a class="btn" href="#contact">Get in touch</a>
       </div>
       <nav class="fnav" aria-label="Footer">
         <a href="#home">Home</a><a href="#build">What we build</a><a href="#how">How we work</a><a href="#work">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
@@ -1149,7 +1154,7 @@ main.fading { opacity: 0; }
 
 <script>
 (function () {
-  // No public booking link: every "Book a call" goes to the review application, and calls are arranged by email.
+  // No public booking link: calls are arranged by email after an enquiry or a review application.
   // Web3Forms access key (public by design; the form is set up in Web3Forms under al.nikolcheva@gmail.com). Empty = answers go via the visitor's email app.
   var WEB3FORMS_KEY = "0894a613-c03a-469b-9446-e22af32299f3";
 
@@ -1526,7 +1531,7 @@ main.fading { opacity: 0; }
   document.getElementById("closeBtn").addEventListener("click", function () { drawer.hidden = true; });
 
 
-  // Contact form. It opens the visitor's email app with the note written in; the copy box is the fallback.
+  // Contact form. Sent to our inbox through Web3Forms; if that fails, the visitor's email app opens instead.
   var form = document.getElementById("form");
   var sent = document.getElementById("sent");
   var err = document.getElementById("formError");
@@ -1544,8 +1549,27 @@ main.fading { opacity: 0; }
     document.getElementById("summary").textContent = text;
     var mail = "mailto:hello@artofflow.studio?subject=" + encodeURIComponent("Enquiry from " + f.name.value.trim()) + "&body=" + encodeURIComponent(text);
     document.getElementById("mailBtn").href = mail;
-    form.hidden = true; sent.hidden = false;
-    window.location.href = mail;
+    // Fallback: open the visitor's email app with the note written in, plus the copy box.
+    function viaEmailApp() { form.hidden = true; sent.hidden = false; window.location.href = mail; }
+    if (!WEB3FORMS_KEY) return viaEmailApp();
+    var btn = document.getElementById("fSubmit");
+    btn.disabled = true; btn.textContent = "Sending";
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY, subject: "Website enquiry: " + f.name.value.trim(), from_name: "Art of Flow website",
+        replyto: f.email.value.trim(), name: f.name.value.trim(), email: f.email.value.trim(),
+        business: f.company.value.trim() || "-", area: f.area.value, message: f.message.value.trim()
+      })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.success) throw new Error("not sent");
+      form.hidden = true;
+      var ok = document.getElementById("sentOk"); ok.hidden = false; ok.focus({ preventScroll: true });
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = "Send enquiry";
+      viaEmailApp();
+    });
   });
   document.getElementById("againBtn").addEventListener("click", function () { sent.hidden = true; form.hidden = false; });
   document.getElementById("copyBtn").addEventListener("click", function () {
