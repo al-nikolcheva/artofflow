@@ -1106,6 +1106,7 @@ main.fading { opacity: 0; }
         <li>Details you give us through the contact form or by email: your name, email address, business name and message.</li>
         <li>Details you give when booking a call through our booking provider: your name, email address, time zone and any answers you give to the booking questions.</li>
         <li>Basic technical information our hosting provider records when you visit the site, such as IP address and browser type. Our hosting provider is Vercel.</li>
+        <li>Anonymous visit statistics from Vercel Web Analytics: which pages are viewed, the referring site, and country, browser and device type. It uses no cookies and does not identify you or follow you across other sites.</li>
       </ul>
 
       <h2>How we use it and our lawful basis</h2>
@@ -1115,11 +1116,12 @@ main.fading { opacity: 0; }
         <tr><td>Providing our services if you become a client</td><td>Contract</td></tr>
         <tr><td>Keeping business and accounting records</td><td>Legal obligation</td></tr>
         <tr><td>Keeping the website secure and working</td><td>Legitimate interests</td></tr>
+        <tr><td>Understanding how the website is used, through anonymous visit statistics</td><td>Legitimate interests</td></tr>
       </table></div>
       <p style="margin-top:1em">We do not sell your personal data. We do not send marketing emails unless you have asked us to.</p>
 
       <h2>Who we share it with</h2>
-      <p>We use trusted providers to run the studio: Vercel for website hosting, Calendly for scheduling calls we arrange with you, Web3Forms for passing on the messages and answers you send through our forms, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
+      <p>We use trusted providers to run the studio: Vercel for website hosting and anonymous visit statistics, Calendly for scheduling calls we arrange with you, Web3Forms for passing on the messages and answers you send through our forms, Google Fonts for the typefaces on this site, and our email provider. They act on our instructions. Some may store data outside the UK; where they do, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations. [Confirm.]</p>
 
       <h2>How long we keep it</h2>
       <p>Enquiries that do not lead to work: [12 months]. Client records: [6 years after the end of the engagement, for accounting purposes]. [Confirm.]</p>
@@ -1128,12 +1130,12 @@ main.fading { opacity: 0; }
       <p>You have the right to access, correct or delete your personal data, to object to or restrict how we use it, and to data portability. To use any of these rights, email hello@artofflow.studio. If you are unhappy with how we handle your data, you can complain to the Information Commissioner&rsquo;s Office (ico.org.uk).</p>
 
       <h2>Cookie policy</h2>
-      <p>Cookies are small files stored on your device. This site does not set any cookies of its own and uses no analytics. It loads its typefaces from Google Fonts, which receives your IP address to deliver them. If we send you a Calendly link to arrange a call, Calendly may set its own cookies on its booking page.</p>
+      <p>Cookies are small files stored on your device. This site does not set any cookies of its own. Our visit statistics (Vercel Web Analytics) work without cookies and store nothing on your device. It loads its typefaces from Google Fonts, which receives your IP address to deliver them. If we send you a Calendly link to arrange a call, Calendly may set its own cookies on its booking page.</p>
       <div class="tablewrap"><table>
         <tr><th>Cookie</th><th>Provider</th><th>Purpose</th><th>Duration</th></tr>
         <tr><td>None</td><td>Art of Flow</td><td>This site sets no cookies of its own</td><td>Not applicable</td></tr>
       </table></div>
-      <p style="margin-top:1em">If we add analytics or other non-essential cookies, we will ask for your consent first, under the Privacy and Electronic Communications Regulations (PECR), and you can change your choice at any time.</p>
+      <p style="margin-top:1em">If we ever add non-essential cookies, we will ask for your consent first, under the Privacy and Electronic Communications Regulations (PECR), and you can change your choice at any time.</p>
 
       <h2>Changes</h2>
       <p>We may update this notice. The date at the top shows when it last changed.</p>
@@ -1491,6 +1493,18 @@ main.fading { opacity: 0; }
     setTimeout(catchUp, 900);
   }
 
+  // Vercel Web Analytics (cookieless). Each page of this one-file site counts as its own page view,
+  // e.g. /review or /contact, and opening the same page twice in a row counts once.
+  var lastTracked = "";
+  function track(name) {
+    var route = name === "home" ? "/" : "/" + name;
+    if (route === lastTracked) return;
+    lastTracked = route;
+    // Queue the view until Vercel's script (loaded at the end of the page) is ready.
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    try { window.va("pageview", { route: route }); } catch (e) {}
+  }
+
   function show(hash) {
     var id = (hash || "").replace("#", "");
     // The view is the longest view name the id equals or starts with: work-valda-sales opens the
@@ -1498,6 +1512,7 @@ main.fading { opacity: 0; }
     var name = "";
     names.forEach(function (n) { if ((id === n || id.indexOf(n + "-") === 0) && n.length > name.length) name = n; });
     if (!name) { name = "home"; id = ""; }
+    track(name);
     if (name !== current) {
       if (current === null || still) swap(name, id);
       else {
@@ -1661,8 +1676,10 @@ main.fading { opacity: 0; }
   });
 
   // artofflow.studio/review (the link in our Instagram replies) opens the review page.
-  if (/^\/review\/?$/.test(location.pathname)) history.replaceState(null, "", "/#review");
+  // Any ?utm_source=... tag is kept so analytics can see where the visit came from.
+  if (/^\/review\/?$/.test(location.pathname)) history.replaceState(null, "", "/" + location.search + "#review");
 
   show(location.hash);
 })();
 </script>
+<script defer src="/_vercel/insights/script.js" data-disable-auto-track="1"></script>
