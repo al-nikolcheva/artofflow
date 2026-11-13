@@ -69,6 +69,7 @@ img { display: block; max-width: 100%; }
 /* hover: a fill sweeps up from the bottom and the arrow nudges out */
 .btn { --sweep: var(--ink); --on: var(--ground); position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-decoration: none; padding: 10px 16px; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; transition: color .5s var(--ease), border-color .5s; white-space: nowrap; }
 .btn::before { content: ""; position: absolute; inset: -1px; z-index: -1; background: var(--sweep); border-radius: inherit; transform: translateY(102%); transition: transform .6s var(--ease); }
+.btn.mag { transition: color .5s var(--ease), border-color .5s, translate .45s cubic-bezier(.22, 1, .36, 1); }
 .btn::after { content: "\2197"; font-size: 12px; transition: transform .5s var(--ease); }
 .btn:hover { color: var(--on); border-color: var(--sweep); }
 .btn:hover::before { transform: none; }
@@ -214,7 +215,7 @@ footer .eyebrow, footer .col .eyebrow { color: #A69C90; font-size: 10.5px; }
 
 /* headlines: each word rises out of a mask */
 .js .words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
-.js .words .w > span { display: inline-block; transform: translateY(110%); transition: transform 1.15s var(--ease); transition-delay: calc(var(--i) * 60ms + var(--d, 0ms)); }
+.js .words .w > span { display: inline-block; transform: translateY(110%); transition: transform 1s cubic-bezier(.7, 0, .22, 1); transition-delay: calc(var(--i) * 110ms + var(--d, 0ms)); }
 .js .words.in .w > span { transform: none; }
 
 /* blocks: fade and rise, staggered with --d */
@@ -1370,9 +1371,13 @@ main.fading { opacity: 0; }
 
   var io = null;
   if (!still) {
-    // Only the big page titles rise word by word; everything else simply fades up.
-    document.querySelectorAll("main .display").forEach(function (el) { el.classList.add("words"); words(el, "split"); });
-    document.querySelectorAll("main .eyebrow, main .h2, .phero .tags, main .intro, main .title-row .btn, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
+    // Page titles and section headings rise line by line, each line sliding up out of a mask.
+    // Headings inside staggered groups keep the simple fade with their group. Everything else fades up.
+    document.querySelectorAll("main .display, main .h2").forEach(function (el) {
+      if (el.closest(".steps, .facts, .values, .contact aside, .acc-list, .projects")) return;
+      el.classList.add("words"); words(el, "split");
+    });
+    document.querySelectorAll("main .eyebrow, .phero .tags, main .intro, main .title-row .btn, .svc .side > p, .svc .prose, .how .n, .how .prose, .how .it, .cs .h3, .cs .prose, .quote, .split .pic, .acc-pic, .contact form, .legal > *:not(h1):not(.eyebrow), main .art, figcaption, .shot img, .proj-nav")
       .forEach(function (el) { el.classList.add("rv"); });
     // Staggered groups: siblings come in one after another.
     document.querySelectorAll(".steps, .facts, .values, .contact aside, .acc-list, footer .fgrid, .projects").forEach(function (g) {
@@ -1384,9 +1389,44 @@ main.fading { opacity: 0; }
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
   }
+  // Magnetic buttons: on a mouse or trackpad, a button leans gently toward the pointer and settles back when it leaves.
+  if (!still && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.addEventListener("pointermove", function (e) {
+      var b = e.target.closest && e.target.closest(".btn");
+      if (!b || b.disabled) return;
+      var r = b.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width / 2) * 0.28, y = (e.clientY - r.top - r.height / 2) * 0.4;
+      b.classList.add("mag");
+      b.style.translate = Math.max(-10, Math.min(10, x)).toFixed(1) + "px " + Math.max(-7, Math.min(7, y)).toFixed(1) + "px";
+    });
+    document.addEventListener("pointerout", function (e) {
+      var b = e.target.closest && e.target.closest(".btn");
+      if (b && !b.contains(e.relatedTarget)) b.style.translate = "";
+    });
+  }
+
+  // Number each word by the line it sits on, so a heading rises one line at a time.
+  // Measured while the page is visible, and again after a resize.
+  function lines(scope) {
+    scope.querySelectorAll(".words").forEach(function (el) {
+      var top = null, n = -1;
+      el.querySelectorAll(".w").forEach(function (w) {
+        var t = w.offsetTop;
+        if (top === null || t > top + 4) { n++; top = t; }
+        if (w.firstChild && w.firstChild.style) w.firstChild.style.setProperty("--i", n);
+      });
+    });
+  }
+  var linesTimer;
+  function relines() { var v = document.querySelector('[data-view="' + current + '"]'); if (v) lines(v); }
+  window.addEventListener("resize", function () { clearTimeout(linesTimer); linesTimer = setTimeout(relines, 200); });
+  // On first load the web fonts arrive after the first measure and change where lines break.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relines);
+  window.addEventListener("load", relines);
   function arm(view) {
     // Re-run the entrances each time a page is shown.
     if (!io) return;
+    lines(view);
     view.querySelectorAll(".words, .rv, .unveil").forEach(function (el) { el.classList.remove("in"); io.observe(el); });
     if (view.getAttribute("data-view") === current) document.querySelectorAll("footer .words, footer .rv").forEach(function (el) { el.classList.remove("in"); io.observe(el); });
   }
