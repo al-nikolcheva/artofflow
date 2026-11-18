@@ -1,11 +1,11 @@
 <title>Art of Flow</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Art of Flow is a London studio building AI systems around your business: clients, sales, marketing and operations.">
+<meta name="description" content="Art of Flow is a London AI studio. We learn how your business works, then build what you need: AI audits, automations and growth support.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Art of Flow">
-<meta property="og:title" content="Art of Flow: AI systems, built around your business">
-<meta property="og:description" content="A London studio building AI systems for the work that repeats: clients, sales, marketing and operations.">
+<meta property="og:title" content="Art of Flow: AI built around your business">
+<meta property="og:description" content="We learn how you work and where the time goes, then build what you actually need, from simple fixes to automating the whole company.">
 <meta property="og:url" content="https://www.artofflow.studio/">
 <link rel="canonical" href="https://www.artofflow.studio/">
 <meta name="twitter:card" content="summary">
@@ -402,6 +402,11 @@ main.fading { opacity: 0; }
 .ico { display: block; width: 52px; margin-bottom: 6px; --sw: 2.2; }
 .ico.lg { width: 96px; margin-bottom: 8px; --sw: 1.5; }
 .intro-row { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 90px); align-items: center; }
+.doing { list-style: none; margin: 22px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.doing li { display: grid; grid-template-columns: minmax(0, 10em) minmax(0, 1fr); gap: 6px 28px; padding: 20px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.doing p { margin: 0; font-weight: 300; font-size: 17px; line-height: 1.55; color: #3E3935; }
+.why { margin: 32px 0 0; font-family: var(--serif); font-size: clamp(21px, 2vw, 27px); line-height: 1.4; display: grid; gap: 14px; text-wrap: pretty; }
+@media (max-width: 640px) { .doing li { grid-template-columns: 1fr; } }
 .flow-fig { margin: 0; }
 .flow-fig figcaption { margin-top: 14px; font-size: 13.5px; color: var(--soft); }
 .how .nwrap { display: grid; gap: 18px; align-content: start; justify-items: start; }
@@ -583,13 +588,25 @@ main.fading { opacity: 0; }
     <div class="film flowfield" aria-hidden="true"></div>
     <div class="wrap">
       <span class="eyebrow">Made to flow</span>
-      <h1 class="display">AI systems, built around <span class="it">your business.</span></h1>
+      <h1 class="display">AI built around <span class="it">your business.</span></h1>
+      <div class="foot">
+        <p class="sub">We come in, learn how you work and where the time goes, then build what you actually need, from simple fixes to automating the whole company.</p>
+        <a class="btn lg" href="#contact" data-area="Free AI audit">Book a free audit call</a>
+      </div>
     </div>
   </div>
 
   <div class="sec">
     <div class="wrap intro-row">
-      <p class="intro">Every business repeats the same work each week: answering, chasing, copying, reporting. We build AI into that work, inside the tools you already use, so it happens on its own and your people are free for the parts only they can do.</p>
+      <div class="doing-col">
+        <span class="eyebrow">What we do</span>
+        <ul class="doing">
+          <li><span class="h3">AI audit</span><p>We look at how your business runs and find what&rsquo;s slowing you down.</p></li>
+          <li><span class="h3">AI automations</span><p>Sales, emails, admin, follow-ups, reporting, connected end to end.</p></li>
+          <li><span class="h3">Growth support</span><p>Websites, marketing and content, tailored to you.</p></li>
+        </ul>
+        <p class="why"><span class="eyebrow">Why us, not off-the-shelf AI</span>Generic AI tools fix one task. We look at the whole business and build systems that fit the way you already work.</p>
+      </div>
       <figure class="flow-fig">
         <div class="art" data-art="flow" role="img" aria-label="A piece of work arrives, is read, drafted, checked by a person and done"></div>
         <figcaption>How one piece of everyday work moves through a system we build.</figcaption>
@@ -969,7 +986,7 @@ main.fading { opacity: 0; }
           <div class="two">
             <div class="field"><label for="f-company">Business</label><input id="f-company" name="company" autocomplete="organization"></div>
             <div class="field"><label for="f-area">Where could we help?</label>
-              <select id="f-area" name="area"><option>Not sure yet</option><option>Clients</option><option>Sales</option><option>Marketing</option><option>Operations</option><option>AI assistant for my team</option></select>
+              <select id="f-area" name="area"><option>Not sure yet</option><option>Free AI audit</option><option>Clients</option><option>Sales</option><option>Marketing</option><option>Operations</option><option>AI assistant for my team</option><option>Websites, marketing and content</option></select>
             </div>
           </div>
           <div class="field"><label for="f-msg">A little about your business</label><textarea id="f-msg" name="message" required placeholder="What you do, and the work you would like to hand over."></textarea></div>
@@ -1533,6 +1550,12 @@ main.fading { opacity: 0; }
     setTimeout(catchUp, 900);
   }
 
+  // Buttons with data-area pre-select that topic on the contact form
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-area]");
+    var s = document.getElementById("f-area");
+    if (b && s) s.value = b.getAttribute("data-area");
+  });
   // Vercel Web Analytics (cookieless). Each page of this one-file site counts as its own page view,
   // e.g. /review or /contact, and opening the same page twice in a row counts once.
   var lastTracked = "";
